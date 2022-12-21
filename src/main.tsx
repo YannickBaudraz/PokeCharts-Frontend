@@ -5,11 +5,22 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Layout from "./pages/layout";
+import Home from "./pages/home";
 
-import App from './App';
+export default function App() {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Layout/>}>
+                    <Route index element={<Home/>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    );
+}
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-    <React.StrictMode>
-      <App/>
-    </React.StrictMode>
-);
+const container = document.getElementById('root')
+const root = ReactDOM.createRoot(container!);
+root.render(<App/>);
