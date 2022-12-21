@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import {Dialog} from 'primereact/dialog';
+import {Button} from 'primereact/button';
+import {useState} from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [display, setDisplay] = useState(false);
+
+  const hideDialog = () => {
+    setDisplay(false);
+  };
+
+  const renderFooter = () => {
+    return (
+        <div>
+          <Button label="No" icon="pi pi-times" onClick={hideDialog} className="p-button-text"/>
+          <Button label="Yes" icon="pi pi-check" onClick={hideDialog} autoFocus/>
+        </div>
+    );
+  };
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+      <>
+        <Button label="Show" icon="pi pi-external-link" onClick={() => setDisplay(true)}/>
+        <Dialog header="Header"
+                visible={display}
+                style={{width: '50vw'}}
+                footer={renderFooter()}
+                onHide={hideDialog}
+        >
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
+            laborum.</p>
+        </Dialog>
+      </>
+  );
 }
 
-export default App
+export default App;
