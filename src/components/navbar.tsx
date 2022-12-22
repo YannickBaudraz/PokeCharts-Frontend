@@ -12,15 +12,15 @@ export default function Navbar() {
             </Link>
 
             <Link to={'/chart'} className={'navbar_link'}>
-                <Button label="Compare" className="p-button-rounded p-button-text"/>
-            </Link>
-
-            <Link to={'/detail'} className={'navbar_link'}>
                 <Button label="Chart" className="p-button-rounded p-button-text"/>
             </Link>
 
-            <Link to={'/compare'} className={'navbar_link'}>
+            <Link to={'/detail'} className={'navbar_link'}>
                 <Button label="Detail" className="p-button-rounded p-button-text"/>
+            </Link>
+
+            <Link to={'/compare'} className={'navbar_link'}>
+                <Button label="Compare" className="p-button-rounded p-button-text"/>
             </Link>
         </div>
 
