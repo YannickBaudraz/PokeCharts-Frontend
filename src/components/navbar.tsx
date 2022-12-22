@@ -1,4 +1,4 @@
-import '/src/assets/css/navbar.css';
+import '/src/assets/style/navbar.css';
 import {Link} from "react-router-dom";
 import {Button} from 'primereact/button';
 

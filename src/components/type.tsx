@@ -1,4 +1,4 @@
-import "/src/assets/css/type.css";
+import "/src/assets/style/type.css";
 
 export default function Types({types}: { types: any }) {
     const typesDetails = [

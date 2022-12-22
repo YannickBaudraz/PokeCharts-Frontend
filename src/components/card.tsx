@@ -1,4 +1,5 @@
 import Types from "./type";
+import "/src/assets/style/card.css";
 
 export default function Card({pokemon}: any, index: number) {
     return (
