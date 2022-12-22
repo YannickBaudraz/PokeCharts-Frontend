@@ -3,16 +3,20 @@ import { InputText } from 'primereact/inputtext';
 import { useState } from 'react';
 
 
-export default function Search() {
-    const [value, setValue] = useState('Search Pokémons');
+export default function Search({ searchQuery, setSearchQuery }: { searchQuery: any; setSearchQuery: any }) {
     return (    
-        <form action="/" method="get" className="search">
+        <form action="/detail" method="get" className="search">
             <div className="col-12 md:col-4">
                 <div className="p-inputgroup">
-                    <InputText value={value} onChange={(e) => setValue(e.target.value)} />
+                    <InputText value={searchQuery}
+            onInput={e => setSearchQuery(e.target.value)} />
+            
                     <Button icon="pi pi-search" className="p-button-warning" label="Search"/>
                 </div>
             </div>
         </form>
+        
     );
 }
+
+
