@@ -5,6 +5,7 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css';
+import '/src/assets/css/index.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/layout";
 import Home from "./pages/home";
