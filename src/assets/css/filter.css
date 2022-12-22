@@ -1,7 +1,14 @@
-.field-container {
+.filter-container{
+    display: flex;
+    width: 100%;
+    /*background-color: red;*/
+    padding: 20px;
+    justify-content: center;
+}
+.types-container {
+    /*background-color: aqua;*/
     height: 212px;
     width: 450px;
-    margin: 0 auto;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -9,10 +16,27 @@
     flex-wrap: wrap;
     align-content: stretch;
 }
+
+.stats-container {
+    /*background-color: chartreuse;*/
+    height: 212px;
+    width: 150px;
+    padding: 0;
+    align-content: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
 .field-checkbox {
     width: 150px;
     margin: 0;
     padding: 0;
     display: flex;
-
+}
+.field-radiobutton {
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
