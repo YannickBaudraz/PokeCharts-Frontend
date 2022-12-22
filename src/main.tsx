@@ -8,6 +8,7 @@ import 'primeflex/primeflex.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/layout";
 import Home from "./pages/home";
+import Detail from './pages/detail';
 
 export default function App() {
     return (
@@ -15,6 +16,9 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>
+                </Route>
+                <Route path="/detail" element={<Layout/>}>
+                    <Route index element={<Detail/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
