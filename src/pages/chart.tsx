@@ -1,11 +1,24 @@
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {Checkbox} from "primereact/checkbox";
-import "/src/assets/css/filter.css";
+import "/src/assets/style/filter.css";
 import {RadioButton} from "primereact/radiobutton";
+
+import Card from "../components/card";
 
 export default function Chart() {
     const [types, setTypes] = useState<any>([]);
     const [stat, setStat] = useState<any>(null);
+    const [pokemons, setPokemons] = useState<any>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        fetch("/src/assets/dataExample.json")
+            .then(response => response.json())
+            .then(data => {
+                setPokemons(data);
+                setLoading(false);
+            });
+    }, []);
 
     const onTypeChange = (e: { checked: boolean; value: any; }) => {
         let selectedTypes = [...types];
@@ -114,31 +127,47 @@ export default function Chart() {
                 </div>
                 <div className="stats-container">
                     <div className="field-radiobutton">
-                        <RadioButton inputId="stat1" name="stat" value="Health" onChange={(e) => setStat(e.value)} checked={stat === 'Health'} />
+                        <RadioButton inputId="stat1" name="stat" value="Health" onChange={(e) => setStat(e.value)}
+                                     checked={stat === 'Health'}/>
                         <label htmlFor="stat1">Health</label>
                     </div>
                     <div className="field-radiobutton">
-                        <RadioButton inputId="stat2" name="stat" value="Attack" onChange={(e) => setStat(e.value)} checked={stat === 'Attack'} />
+                        <RadioButton inputId="stat2" name="stat" value="Attack" onChange={(e) => setStat(e.value)}
+                                     checked={stat === 'Attack'}/>
                         <label htmlFor="stat2">Attack</label>
                     </div>
                     <div className="field-radiobutton">
-                        <RadioButton inputId="stat3" name="stat" value="Defense" onChange={(e) => setStat(e.value)} checked={stat === 'Defense'} />
+                        <RadioButton inputId="stat3" name="stat" value="Defense" onChange={(e) => setStat(e.value)}
+                                     checked={stat === 'Defense'}/>
                         <label htmlFor="stat3">Defense</label>
                     </div>
                     <div className="field-radiobutton">
-                        <RadioButton inputId="stat4" name="stat" value="Speed" onChange={(e) => setStat(e.value)} checked={stat === 'Speed'} />
+                        <RadioButton inputId="stat4" name="stat" value="Speed" onChange={(e) => setStat(e.value)}
+                                     checked={stat === 'Speed'}/>
                         <label htmlFor="stat4">Speed</label>
                     </div>
                     <div className="field-radiobutton">
-                        <RadioButton inputId="stat5" name="stat" value="Special Attack" onChange={(e) => setStat(e.value)} checked={stat === 'Special Attack'} />
+                        <RadioButton inputId="stat5" name="stat" value="Special Attack"
+                                     onChange={(e) => setStat(e.value)} checked={stat === 'Special Attack'}/>
                         <label htmlFor="stat5">Special Attack</label>
                     </div>
                     <div className="field-radiobutton">
-                        <RadioButton inputId="stat6" name="stat" value="Special Defense" onChange={(e) => setStat(e.value)} checked={stat === 'Special Defense'} />
+                        <RadioButton inputId="stat6" name="stat" value="Special Defense"
+                                     onChange={(e) => setStat(e.value)} checked={stat === 'Special Defense'}/>
                         <label htmlFor="stat6">Special Defense</label>
                     </div>
                 </div>
             </div>
+            {loading && <h1>Loading...</h1>}
+            {!loading &&
+                <div className="chart-container">
+                    <div className="pokemon-container">
+                        {pokemons.map((pokemon: any, index: number) => {
+                            return <Card key={index} pokemon={pokemon}/>
+                        })}
+                    </div>
+                </div>
+            }
         </>
     );
 }
