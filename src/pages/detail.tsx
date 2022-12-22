@@ -1,36 +1,17 @@
 
 import { useState } from 'react';
-import Search from '../components/search';
-import pokemon from '../data/pokemon.json'; 
-
-
-
-const filterPosts = (posts: any[], query: string | null) => {
-    if (!query) {
-        return posts;
-    }
-
-    return posts.filter((post) => {
-        const postName = post.name.toLowerCase();
-        return postName.includes(query);
-    });
-};
-
+import pokemons from '../data/pokemon.json'; 
+import { ListBox } from 'primereact/listbox';
+ 
 export default function Detail() {
-    const { search } = window.location;
-    const query = new URLSearchParams(search).get('s');
-    const [searchQuery, setSearchQuery] = useState(query || '');
-    const filteredPosts = filterPosts(pokemon, searchQuery);
+
+    const [pokemon, setPokemon] = useState(null);
+
+    
     return (
         <>
-        <Search 
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}/>
-        <ul>
-            {filteredPosts.map(pokemon => (
-                    <li key={pokemon.key}>{pokemon.name}</li>
-                ))}
-            </ul>
+         <ListBox className='listbox' value={pokemon} options={pokemons} onChange={(e) => setPokemon(e.value)} multiple filter optionLabel="name"
+                 style={{ width: '15rem' }} listStyle={{ maxHeight: '250px' }} />
         </>
     );
 }

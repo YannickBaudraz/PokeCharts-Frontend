@@ -1,9 +1,5 @@
-.search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.listbox {
     margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    
+    width: 50%;
+    padding: 10px;
 }
