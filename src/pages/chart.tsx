@@ -8,11 +8,13 @@ import Card from "../components/card";
 export default function Chart() {
     const [types, setTypes] = useState<any>([]);
     const [selectedTypes, setSelectedTypes] = useState<any>([]);
-    const [stat, setStat] = useState<any>(null);
+    const [stats, setStats] = useState<any>([]);
+    const [selectedStat, setSelectedStat] = useState<any>(null);
     const [pokemon, setPokemon] = useState<any>([]);
     const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
     const [loadingPokemon, setLoadingPokemon] = useState<boolean>(true);
     const [loadingTypes, setLoadingTypes] = useState<boolean>(true);
+    const [loadingStats, setLoadingStats] = useState<boolean>(true);
 
     useEffect(() => {
         fetch("/src/assets/dataExamplePokemon.json")
@@ -30,6 +32,15 @@ export default function Chart() {
             .then(data => {
                 setTypes(data);
                 setLoadingTypes(false);
+            });
+    }, []);
+
+    useEffect(() => {
+        fetch("/src/assets/dataExampleStats.json")
+            .then(response => response.json())
+            .then(data => {
+                setStats(data);
+                setLoadingStats(false);
             });
     }, []);
 
@@ -71,36 +82,23 @@ export default function Chart() {
                     </div>
                 }
                 <div className="stats-container">
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="stat1" name="stat" value="Health" onChange={(e) => setStat(e.value)}
-                                     checked={stat === 'Health'}/>
-                        <label htmlFor="stat1">Health</label>
-                    </div>
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="stat2" name="stat" value="Attack" onChange={(e) => setStat(e.value)}
-                                     checked={stat === 'Attack'}/>
-                        <label htmlFor="stat2">Attack</label>
-                    </div>
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="stat3" name="stat" value="Defense" onChange={(e) => setStat(e.value)}
-                                     checked={stat === 'Defense'}/>
-                        <label htmlFor="stat3">Defense</label>
-                    </div>
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="stat4" name="stat" value="Speed" onChange={(e) => setStat(e.value)}
-                                     checked={stat === 'Speed'}/>
-                        <label htmlFor="stat4">Speed</label>
-                    </div>
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="stat5" name="stat" value="Special Attack"
-                                     onChange={(e) => setStat(e.value)} checked={stat === 'Special Attack'}/>
-                        <label htmlFor="stat5">Special Attack</label>
-                    </div>
-                    <div className="field-radiobutton">
-                        <RadioButton inputId="stat6" name="stat" value="Special Defense"
-                                     onChange={(e) => setStat(e.value)} checked={stat === 'Special Defense'}/>
-                        <label htmlFor="stat6">Special Defense</label>
-                    </div>
+                    {loadingStats && <h1>Loading...</h1>}
+                    {!loadingStats &&
+                        <>
+                            {
+                                stats.map((stat: any, index: number) => {
+                                    return (
+                                        <div className="field-radiobutton">
+                                            <RadioButton inputId={"stat" + index} name="stat" value={stat.name}
+                                                         onChange={(e) => setSelectedStat(e.value)}
+                                                         checked={selectedStat === stat.name}/>
+                                            <label htmlFor={"stat" + index}>{stat.name}</label>
+                                        </div>
+                                    )
+                                })
+                            }
+                        </>
+                    }
                 </div>
             </div>
             {loadingPokemon && <h1>Loading...</h1>}
