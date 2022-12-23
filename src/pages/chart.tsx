@@ -9,6 +9,7 @@ export default function Chart() {
     const [types, setTypes] = useState<any>([]);
     const [stat, setStat] = useState<any>(null);
     const [pokemons, setPokemons] = useState<any>([]);
+    const [filteredPokemons, setFilteredPokemons] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
@@ -17,6 +18,7 @@ export default function Chart() {
             .then(data => {
                 setPokemons(data);
                 setLoading(false);
+                setFilteredPokemons(data);
             });
     }, []);
 
@@ -28,6 +30,14 @@ export default function Chart() {
             selectedTypes.splice(selectedTypes.indexOf(e.value), 1);
 
         setTypes(selectedTypes);
+
+        if(selectedTypes.length > 0) {
+            setFilteredPokemons(pokemons.filter((pokemon: any) => {
+                return pokemon.types.some((type: any) => selectedTypes.includes(type));
+            }));
+        }else {
+            setFilteredPokemons(pokemons);
+        }
     }
 
     return (
@@ -162,7 +172,7 @@ export default function Chart() {
             {!loading &&
                 <div className="chart-container">
                     <div className="pokemon-container">
-                        {pokemons.map((pokemon: any, index: number) => {
+                        {filteredPokemons.map((pokemon: any, index: number) => {
                             return <Card key={index} pokemon={pokemon}/>
                         })}
                     </div>
