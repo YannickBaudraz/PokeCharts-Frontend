@@ -7,35 +7,47 @@ import Card from "../components/card";
 
 export default function Chart() {
     const [types, setTypes] = useState<any>([]);
+    const [selectedTypes, setSelectedTypes] = useState<any>([]);
     const [stat, setStat] = useState<any>(null);
     const [pokemons, setPokemons] = useState<any>([]);
     const [filteredPokemons, setFilteredPokemons] = useState<any>([]);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loadingPokemon, setLoadingPokemon] = useState<boolean>(true);
+    const [loadingTypes, setLoadingTypes] = useState<boolean>(true);
 
     useEffect(() => {
-        fetch("/src/assets/dataExample.json")
+        fetch("/src/assets/dataExamplePokemon.json")
             .then(response => response.json())
             .then(data => {
                 setPokemons(data);
-                setLoading(false);
+                setLoadingPokemon(false);
                 setFilteredPokemons(data);
             });
     }, []);
 
+    useEffect(() => {
+        fetch("/src/assets/dataExampleTypes.json")
+            .then(response => response.json())
+            .then(data => {
+                setTypes(data);
+                setLoadingTypes(false);
+            });
+    }, []);
+
     const onTypeChange = (e: { checked: boolean; value: any; }) => {
-        let selectedTypes = [...types];
+        let tempSelectedTypes = [...selectedTypes];
         if (e.checked)
-            selectedTypes.push(e.value);
+            tempSelectedTypes.push(e.value);
         else
-            selectedTypes.splice(selectedTypes.indexOf(e.value), 1);
+            tempSelectedTypes.splice(selectedTypes.indexOf(e.value), 1);
 
-        setTypes(selectedTypes);
+        setSelectedTypes(tempSelectedTypes);
 
-        if(selectedTypes.length > 0) {
+
+        if (tempSelectedTypes.length > 0) {
             setFilteredPokemons(pokemons.filter((pokemon: any) => {
-                return pokemon.types.some((type: any) => selectedTypes.includes(type));
+                return pokemon.types.some((type: any) => tempSelectedTypes.includes(type));
             }));
-        }else {
+        } else {
             setFilteredPokemons(pokemons);
         }
     }
@@ -43,98 +55,21 @@ export default function Chart() {
     return (
         <>
             <div className="filter-container">
-                <div className="types-container">
-                    <div className="field-checkbox">
-                        <Checkbox inputId="cb1" value="Normal" onChange={onTypeChange}
-                                  checked={types.includes('Normal')}></Checkbox>
-                        <label htmlFor="cb1" className="p-checkbox-label">Normal</label>
+                {loadingTypes && <h1>Loading...</h1>}
+                {!loadingTypes &&
+                    <div className="types-container">
+                        {types.map((type: any, index: number) => {
+                                return (
+                                    <div className="field-checkbox">
+                                        <Checkbox inputId={"type" + index} value={type.name} onChange={onTypeChange}
+                                                  checked={selectedTypes.includes(type.name)}></Checkbox>
+                                        <label htmlFor={"type" + index} className="p-checkbox-label">{type.name}</label>
+                                    </div>
+                                )
+                            }
+                        )}
                     </div>
-                    <div className="field-checkbox">
-                        <Checkbox inputId="cb2" value="Fire" onChange={onTypeChange}
-                                  checked={types.includes('Fire')}></Checkbox>
-                        <label htmlFor="cb2" className="p-checkbox-label">Fire</label>
-                    </div>
-                    <div className="field-checkbox">
-                        <Checkbox inputId="cb3" value="Water" onChange={onTypeChange}
-                                  checked={types.includes('Water')}></Checkbox>
-                        <label htmlFor="cb3" className="p-checkbox-label">Water</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb4" value="Grass" onChange={onTypeChange}
-                                  checked={types.includes('Grass')}></Checkbox>
-                        <label htmlFor="cb4" className="p-checkbox-label">Grass</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb5" value="Electric" onChange={onTypeChange}
-                                  checked={types.includes('Electric')}></Checkbox>
-                        <label htmlFor="cb5" className="p-checkbox-label">Electric</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb6" value="Ice" onChange={onTypeChange}
-                                  checked={types.includes('Ice')}></Checkbox>
-                        <label htmlFor="cb6" className="p-checkbox-label">Ice</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb7" value="Fighting" onChange={onTypeChange}
-                                  checked={types.includes('Fighting')}></Checkbox>
-                        <label htmlFor="cb7" className="p-checkbox-label">Fighting</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb8" value="Poison" onChange={onTypeChange}
-                                  checked={types.includes('Poison')}></Checkbox>
-                        <label htmlFor="cb8" className="p-checkbox-label">Poison</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb9" value="Ground" onChange={onTypeChange}
-                                  checked={types.includes('Ground')}></Checkbox>
-                        <label htmlFor="cb9" className="p-checkbox-label">Ground</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb10" value="Flying" onChange={onTypeChange}
-                                  checked={types.includes('Flying')}></Checkbox>
-                        <label htmlFor="cb10" className="p-checkbox-label">Flying</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb11" value="Psychic" onChange={onTypeChange}
-                                  checked={types.includes('Psychic')}></Checkbox>
-                        <label htmlFor="cb11" className="p-checkbox-label">Psychic</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb12" value="Bug" onChange={onTypeChange}
-                                  checked={types.includes('Bug')}></Checkbox>
-                        <label htmlFor="cb12" className="p-checkbox-label">Bug</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb13" value="Rock" onChange={onTypeChange}
-                                  checked={types.includes('Rock')}></Checkbox>
-                        <label htmlFor="cb13" className="p-checkbox-label">Rock</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb14" value="Ghost" onChange={onTypeChange}
-                                  checked={types.includes('Ghost')}></Checkbox>
-                        <label htmlFor="cb14" className="p-checkbox-label">Ghost</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb15" value="Dragon" onChange={onTypeChange}
-                                  checked={types.includes('Dragon')}></Checkbox>
-                        <label htmlFor="cb15" className="p-checkbox-label">Dragon</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb16" value="Dark" onChange={onTypeChange}
-                                  checked={types.includes('Dark')}></Checkbox>
-                        <label htmlFor="cb16" className="p-checkbox-label">Dark</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb17" value="Steel" onChange={onTypeChange}
-                                  checked={types.includes('Steel')}></Checkbox>
-                        <label htmlFor="cb17" className="p-checkbox-label">Steel</label>
-                    </div>
-                    <div className={"field-checkbox"}>
-                        <Checkbox inputId="cb18" value="Fairy" onChange={onTypeChange}
-                                  checked={types.includes('Fairy')}></Checkbox>
-                        <label htmlFor="cb18" className="p-checkbox-label">Fairy</label>
-                    </div>
-                </div>
+                }
                 <div className="stats-container">
                     <div className="field-radiobutton">
                         <RadioButton inputId="stat1" name="stat" value="Health" onChange={(e) => setStat(e.value)}
@@ -168,13 +103,14 @@ export default function Chart() {
                     </div>
                 </div>
             </div>
-            {loading && <h1>Loading...</h1>}
-            {!loading &&
+            {loadingPokemon && <h1>Loading...</h1>}
+            {!loadingPokemon &&
                 <div className="chart-container">
                     <div className="pokemon-container">
                         {filteredPokemons.map((pokemon: any, index: number) => {
                             return <Card key={index} pokemon={pokemon}/>
                         })}
+                        {filteredPokemons.length === 0 && <h1>No pokemons found of this type.</h1>}
                     </div>
                 </div>
             }
