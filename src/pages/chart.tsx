@@ -9,8 +9,8 @@ export default function Chart() {
     const [types, setTypes] = useState<any>([]);
     const [selectedTypes, setSelectedTypes] = useState<any>([]);
     const [stat, setStat] = useState<any>(null);
-    const [pokemons, setPokemons] = useState<any>([]);
-    const [filteredPokemons, setFilteredPokemons] = useState<any>([]);
+    const [pokemon, setPokemon] = useState<any>([]);
+    const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
     const [loadingPokemon, setLoadingPokemon] = useState<boolean>(true);
     const [loadingTypes, setLoadingTypes] = useState<boolean>(true);
 
@@ -18,9 +18,9 @@ export default function Chart() {
         fetch("/src/assets/dataExamplePokemon.json")
             .then(response => response.json())
             .then(data => {
-                setPokemons(data);
+                setPokemon(data);
                 setLoadingPokemon(false);
-                setFilteredPokemons(data);
+                setFilteredPokemon(data);
             });
     }, []);
 
@@ -44,11 +44,11 @@ export default function Chart() {
 
 
         if (tempSelectedTypes.length > 0) {
-            setFilteredPokemons(pokemons.filter((pokemon: any) => {
+            setFilteredPokemon(pokemon.filter((pokemon: any) => {
                 return pokemon.types.some((type: any) => tempSelectedTypes.includes(type));
             }));
         } else {
-            setFilteredPokemons(pokemons);
+            setFilteredPokemon(pokemon);
         }
     }
 
@@ -107,10 +107,10 @@ export default function Chart() {
             {!loadingPokemon &&
                 <div className="chart-container">
                     <div className="pokemon-container">
-                        {filteredPokemons.map((pokemon: any, index: number) => {
+                        {filteredPokemon.map((pokemon: any, index: number) => {
                             return <Card key={index} pokemon={pokemon}/>
                         })}
-                        {filteredPokemons.length === 0 && <h1>No pokemons found of this type.</h1>}
+                        {filteredPokemon.length === 0 && <h1>No pokemon found of this type.</h1>}
                     </div>
                 </div>
             }
