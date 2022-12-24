@@ -1,5 +1,4 @@
-import {useState, useEffect} from "react";
-import {Checkbox} from "primereact/checkbox";
+import {useEffect, useState} from "react";
 import "/src/assets/style/filter.css";
 import {RadioButton} from "primereact/radiobutton";
 
