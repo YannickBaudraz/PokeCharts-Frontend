@@ -6,8 +6,6 @@ import Card from "../components/card";
 import TypeFilter from "../components/typeFilter";
 
 export default function Chart() {
-
-    const [selectedTypes, setSelectedTypes] = useState<any>([]);
     const [stats, setStats] = useState<any>([]);
     const [selectedStat, setSelectedStat] = useState<any>(null);
     const [pokemon, setPokemon] = useState<any>([]);
@@ -36,7 +34,6 @@ export default function Chart() {
     }, []);
 
     const onTypeChange = (types: any) => {
-        setSelectedTypes(types);
         if (types.length > 0) {
             setFilteredPokemon(pokemon.filter((pokemon: any) => {
                 return pokemon.types.some((type: any) => types.includes(type));
