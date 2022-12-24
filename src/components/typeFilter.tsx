@@ -1,11 +1,21 @@
 import {Checkbox} from "primereact/checkbox";
 import {useEffect, useState} from "react";
 
+/**
+ * This component is a filter for the types of the pokemon.
+ * It is used in the chart page.
+ * @param onTypeChangeChild - This function is used to pass the selected types to the parent component.
+ */
 export default function TypeFilter({onTypeChangeChild}: any) {
     const [loadingTypes, setLoadingTypes] = useState<boolean>(true);
     const [types, setTypes] = useState<any>([]);
     const [selectedTypes, setSelectedTypes] = useState<any>([]);
 
+    /**
+     * This function is a callback function for the checkbox component.
+     * It is used to update the selected types.
+     * @param e - The event object.
+     */
     const onTypeChange = (e: { checked: boolean; value: any; }) => {
         let tempSelectedTypes = [...selectedTypes];
         if (e.checked)
@@ -15,9 +25,13 @@ export default function TypeFilter({onTypeChangeChild}: any) {
 
         setSelectedTypes(tempSelectedTypes);
 
+        // Call the parent function to update the filtered pokemon.
         onTypeChangeChild(tempSelectedTypes);
     }
 
+    /**
+     * Fetches the types from the Json file
+     */
     useEffect(() => {
         fetch("/src/assets/dataExampleTypes.json")
             .then(response => response.json())
