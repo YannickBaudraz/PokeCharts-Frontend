@@ -16,6 +16,7 @@ export default function StatFilter({onStatChangeChild}: any) {
             .then(response => response.json())
             .then(data => {
                 setStats(data);
+                setSelectedStat(data[0].name);
                 setLoadingStats(false);
             });
     }, []);
