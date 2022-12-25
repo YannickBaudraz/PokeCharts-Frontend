@@ -5,6 +5,7 @@ import Card from "../components/card";
 import TypeFilter from "../components/typeFilter";
 import StatFilter from "../components/statFilter";
 import {InputSwitch} from "primereact/inputswitch";
+import {Chart} from "primereact/chart";
 
 export default function Chart() {
     const [pokemon, setPokemon] = useState<any>([]);
@@ -55,7 +56,7 @@ export default function Chart() {
                             {filteredPokemon.length === 0 && <h1>No pokemon found of this type.</h1>}
                         </div> :
                         <div className="chart-container">
-                            <h1>Chart</h1>
+                            <Chart type="bar" data={basicData} options={horizontalOptions} />
                         </div>
                     }
                 </div>
