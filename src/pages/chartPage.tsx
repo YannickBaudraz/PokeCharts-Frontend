@@ -7,11 +7,12 @@ import StatFilter from "../components/statFilter";
 import {InputSwitch} from "primereact/inputswitch";
 import {Chart} from "primereact/chart";
 
-export default function Chart() {
+export default function ChartPage() {
     const [pokemon, setPokemon] = useState<any>([]);
     const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
     const [loadingPokemon, setLoadingPokemon] = useState<boolean>(true);
     const [switchFilter, setSwitchFilter] = useState<boolean>(false);
+    const [selectedType, setSelectedType] = useState<any>(null);
 
 
     useEffect(() => {
@@ -21,6 +22,7 @@ export default function Chart() {
                 setPokemon(data);
                 setLoadingPokemon(false);
                 setFilteredPokemon(data);
+                setSelectedType("Health");
             });
     }, []);
 
@@ -36,7 +38,50 @@ export default function Chart() {
 
     const onStatChange = (stat: any) => {
         // TODO: Implement this function.
+        setSelectedType(stat);
+        console.log(stat);
     }
+
+    const basicData = {
+        labels: filteredPokemon.map((pokemon: any) => pokemon.name),
+        datasets: [
+            {
+                label: selectedType,
+                data: filteredPokemon.map((pokemon: any) => selectedType === "Health" ? pokemon.stats.hp : selectedType === "Attack" ? pokemon.stats.attack : selectedType === "Defense" ? pokemon.stats.defense : selectedType === "Speed" ? pokemon.stats.speed : selectedType === "Special Attack" ? pokemon.stats.specialAttack : pokemon.stats.specialDefense),
+                fill: false,
+                backgroundColor: '#6366f1',
+            }
+        ],
+    };
+
+    let basicOptions = {
+        indexAxis: 'y',
+        plugins: {
+            legend: {
+                labels: {
+                    color: '#495057'
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color: '#495057'
+                },
+                grid: {
+                    color: '#ebedef'
+                }
+            },
+            y: {
+                ticks: {
+                    color: '#495057'
+                },
+                grid: {
+                    color: '#ebedef'
+                }
+            }
+        },
+    };
 
     return (
         <>
@@ -56,7 +101,7 @@ export default function Chart() {
                             {filteredPokemon.length === 0 && <h1>No pokemon found of this type.</h1>}
                         </div> :
                         <div className="chart-container">
-                            <Chart type="bar" data={basicData} options={horizontalOptions} />
+                            <Chart type="bar" data={basicData} options={basicOptions}/>
                         </div>
                     }
                 </div>
