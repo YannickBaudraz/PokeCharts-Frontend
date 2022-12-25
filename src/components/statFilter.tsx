@@ -1,61 +1,42 @@
-import {Checkbox} from "primereact/checkbox";
+import {RadioButton} from "primereact/radiobutton";
 import {useEffect, useState} from "react";
 
-/**
- * This component is a filter for the types of the pokemon.
- * It is used in the chart page.
- * @param onTypeChangeChild - This function is used to pass the selected types to the parent component.
- */
-export default function TypeFilter({onTypeChangeChild}: any) {
-    const [loadingTypes, setLoadingTypes] = useState<boolean>(true);
-    const [types, setTypes] = useState<any>([]);
-    const [selectedTypes, setSelectedTypes] = useState<any>([]);
+export default function StatFilter({onStatChangeChild}: any) {
+    const [loadingStats, setLoadingStats] = useState<boolean>(true);
+    const [stats, setStats] = useState<any>([]);
+    const [selectedStat, setSelectedStat] = useState<any>(null);
 
-    /**
-     * This function is a callback function for the checkbox component.
-     * It is used to update the selected types.
-     * @param e - The event object.
-     */
-    const onTypeChange = (e: { checked: boolean; value: any; }) => {
-        let tempSelectedTypes = [...selectedTypes];
-        if (e.checked)
-            tempSelectedTypes.push(e.value);
-        else
-            tempSelectedTypes.splice(selectedTypes.indexOf(e.value), 1);
-
-        setSelectedTypes(tempSelectedTypes);
-
-        // Call the parent function to update the filtered pokemon.
-        onTypeChangeChild(tempSelectedTypes);
+    const onStatChange = (e: { value: any; }) => {
+        setSelectedStat(e.value);
+        onStatChangeChild(e.value);
     }
 
-    /**
-     * Fetches the types from the Json file
-     */
     useEffect(() => {
-        fetch("/src/assets/dataExampleTypes.json")
+        fetch("/src/assets/dataExampleStats.json")
             .then(response => response.json())
             .then(data => {
-                setTypes(data);
-                setLoadingTypes(false);
+                setStats(data);
+                setLoadingStats(false);
             });
     }, []);
 
     return (
         <>
-            {loadingTypes && <h1>Loading...</h1>}
-            {!loadingTypes &&
-                <div className="types-container">
-                    {types.map((type: any, index: number) => {
+            {loadingStats && <h1>Loading...</h1>}
+            {!loadingStats &&
+                <div className="stats-container">
+                    {
+                        stats.map((stat: any, index: number) => {
                             return (
-                                <div className="field-checkbox">
-                                    <Checkbox inputId={"type" + index} value={type.name} onChange={onTypeChange}
-                                              checked={selectedTypes.includes(type.name)}></Checkbox>
-                                    <label htmlFor={"type" + index} className="p-checkbox-label">{type.name}</label>
+                                <div className="field-radiobutton">
+                                    <RadioButton inputId={"stat" + index} name="stat" value={stat.name}
+                                                 onChange={(e) => onStatChange(e)}
+                                                 checked={selectedStat === stat.name}/>
+                                    <label htmlFor={"stat" + index}>{stat.name}</label>
                                 </div>
                             )
-                        }
-                    )}
+                        })
+                    }
                 </div>
             }
         </>
