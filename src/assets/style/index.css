@@ -1,3 +1,7 @@
 * {
     font-family: var(--font-family);
 }
+
+html {
+    overflow-y: scroll;
+}
