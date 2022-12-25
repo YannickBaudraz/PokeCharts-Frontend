@@ -37,9 +37,7 @@ export default function ChartPage() {
     }
 
     const onStatChange = (stat: any) => {
-        // TODO: Implement this function.
         setSelectedType(stat);
-        console.log(stat);
     }
 
     const basicData = {
@@ -93,15 +91,15 @@ export default function ChartPage() {
             {loadingPokemon && <h1>Loading...</h1>}
             {!loadingPokemon &&
                 <div className="content-container">
+                    {filteredPokemon.length === 0 && <h1>No pokemon found of this type.</h1>}
                     {!switchFilter ?
                         <div className="pokemon-container">
                             {filteredPokemon.map((pokemon: any, index: number) => {
                                 return <Card key={index} pokemon={pokemon}/>
                             })}
-                            {filteredPokemon.length === 0 && <h1>No pokemon found of this type.</h1>}
                         </div> :
                         <div className="chart-container">
-                            <Chart type="bar" data={basicData} options={basicOptions}/>
+                            {filteredPokemon.length !== 0 && <Chart type="bar" data={basicData} options={basicOptions}/>}
                         </div>
                     }
                 </div>
