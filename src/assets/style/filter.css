@@ -39,6 +39,10 @@
     justify-content: space-evenly;
 }
 
+.content-container {
+    text-align: center;
+}
+
 .field-checkbox {
     width: 150px;
     margin: 0;
