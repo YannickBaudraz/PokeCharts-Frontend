@@ -50,8 +50,14 @@
     display: flex;
 }
 
+.field-checkboxes {
+    display: flex;
+    width: 212px;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
 .field-radiobutton {
-    width: 150px;
     margin: 0;
     padding: 0;
     display: flex;
