@@ -35,6 +35,14 @@ export default function ChartPage() {
         setSelectedStat(stat);
     }
 
+    const onConditionChange = (conditions: any) => {
+        setSelectedCondition(conditions);
+    }
+
+    const onConditionValueChange = (value: any) => {
+        setSelectedConditionValue(value);
+    }
+
     const basicData = {
         labels: filteredPokemon.map((pokemon: any) => pokemon.name),
         datasets: [
