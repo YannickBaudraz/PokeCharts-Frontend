@@ -86,7 +86,14 @@ export default function ChartPage() {
 
     function submitFilters() {
         //TODO : Construct the query that will be sent to the backend, which will return the filtered data
-        //TODO : Set the filtered data to the filteredPokemon constant
+        // Create an object that will contain the filters
+        let filters = {
+            types: selectedType,
+            stat: selectedStat,
+            conditions: selectedConditions,
+            conditionValue: selectedConditionValue
+        }
+        console.log(filters);
         fetch("/src/assets/dataExamplePokemon.json")
             .then(response => response.json())
             .then(data => {
