@@ -39,6 +39,19 @@
     align-items: center;
 }
 
+.switch-container {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch-container > * {
+    margin: 0 10px;
+}
+
 .pokemon-container {
     width: 100%;
     height: 1000px;
