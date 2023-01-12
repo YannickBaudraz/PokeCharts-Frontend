@@ -30,6 +30,15 @@
     justify-content: space-around;
 }
 
+.detail-container {
+    height: 212px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .pokemon-container {
     width: 100%;
     height: 1000px;
@@ -62,4 +71,3 @@
     padding: 0;
     display: flex;
 }
-
