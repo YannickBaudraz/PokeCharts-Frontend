@@ -1,7 +1,6 @@
 import {Checkbox} from "primereact/checkbox";
 import {useEffect, useState} from "react";
-import {InputText} from "primereact/inputtext";
-import {RadioButton} from "primereact/radiobutton";
+import {InputNumber} from "primereact/inputnumber";
 
 /**
  * This component is a filter with a text input and a radio button that filter the pokemon by it's stats depending on a certain value
@@ -52,10 +51,9 @@ export default function ConditionFilter({onConditionChangeChild, onConditionValu
                     <label htmlFor="condition3">{"\>"}</label>
                 </div>
             </div>
-            <InputText placeholder="Greater Than..." disabled={selectedConditions.length === 0}
-                       onChange={event => {
-                           onConditionValueChange(event.target);
-                       }}/>
+            <InputNumber inputId="minmax-buttons" mode="decimal" min={0} onValueChange={event => {
+                onConditionValueChange(event.target)
+            }}/>
         </div>
     )
 }
