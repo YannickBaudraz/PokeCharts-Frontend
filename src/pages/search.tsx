@@ -9,7 +9,7 @@ import {InputSwitch} from "primereact/inputswitch";
 import {Chart} from "primereact/chart";
 import {Button} from "primereact/button";
 
-export default function ChartPage() {
+export default function Search() {
     // Array that will contain every pokemon filtered
     const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
     // Boolean to check if the data is loading

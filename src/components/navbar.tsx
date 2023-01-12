@@ -11,8 +11,8 @@ export default function Navbar() {
                 <Button label="Home" className="p-button-rounded p-button-text"/>
             </Link>
 
-            <Link to={'/chart'} className={'navbar_link'}>
-                <Button label="Chart" className="p-button-rounded p-button-text"/>
+            <Link to={'/search'} className={'navbar_link'}>
+                <Button label="Search" className="p-button-rounded p-button-text"/>
             </Link>
 
             <Link to={'/detail'} className={'navbar_link'}>

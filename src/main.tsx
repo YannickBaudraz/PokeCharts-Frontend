@@ -9,7 +9,7 @@ import '/src/assets/style/index.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/layout";
 import Home from "./pages/home";
-import ChartPage from "./pages/chartPage";
+import Search from "./pages/search";
 
 export default function App() {
     return (
@@ -17,7 +17,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Layout/>}>
                     <Route index element={<Home/>}/>
-                    <Route path="chart" element={<ChartPage/>}/>
+                    <Route path="search" element={<Search/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
