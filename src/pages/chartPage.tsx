@@ -4,6 +4,7 @@ import "/src/assets/style/filter.css";
 import Card from "../components/card";
 import TypeFilter from "../components/typeFilter";
 import StatFilter from "../components/statFilter";
+import ConditionFilter from "../components/conditionFilter";
 import {InputSwitch} from "primereact/inputswitch";
 import {Chart} from "primereact/chart";
 import {Button} from "primereact/button";
