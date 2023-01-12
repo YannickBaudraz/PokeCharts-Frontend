@@ -51,7 +51,7 @@ export default function ConditionFilter({onConditionChangeChild, onConditionValu
                     <label htmlFor="condition3">{"\>"}</label>
                 </div>
             </div>
-            <InputNumber inputId="minmax-buttons" mode="decimal" min={0} onValueChange={event => {
+            <InputNumber inputId="minmax-buttons" mode="decimal" disabled={selectedConditions.length === 0} min={0} onValueChange={event => {
                 onConditionValueChange(event.target)
             }}/>
         </div>
