@@ -119,8 +119,12 @@ export default function ChartPage() {
                 <StatFilter onStatChangeChild={onStatChange}/>
                 <ConditionFilter onConditionChangeChild={onConditionChange} onConditionValueChangeChild={onConditionValueChange }/>
                 <Button label="Filter" onClick={submitFilters}/>
-                <InputSwitch checked={switchFilter} onChange={(e) => setSwitchFilter(e.value)}/>
             </div>
+            <div className={"switch-container"}>
+                <InputSwitch checked={switchFilter} onChange={(e) => setSwitchFilter(e.value)}/>
+                <p>Switch to {switchFilter ? "Table" : "Chart"}</p>
+            </div>
+
             {loadingPokemon && <h1>Apply filters to get the needed Pokemon.</h1>}
             {!loadingPokemon &&
                 <div className="content-container">
