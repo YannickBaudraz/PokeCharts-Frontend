@@ -101,6 +101,7 @@ export default function ChartPage() {
             <div className="filter-container">
                 <TypeFilter onTypeChangeChild={onTypeChange}/>
                 <StatFilter onStatChangeChild={onStatChange}/>
+                <ConditionFilter onConditionChangeChild={onConditionChange} onConditionValueChangeChild={onConditionValueChange }/>
                 <Button label="Filter" onClick={submitFilters}/>
                 <InputSwitch checked={switchFilter} onChange={(e) => setSwitchFilter(e.value)}/>
             </div>
