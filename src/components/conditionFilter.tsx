@@ -1,5 +1,5 @@
 import {Checkbox} from "primereact/checkbox";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {InputNumber} from "primereact/inputnumber";
 
 /**
@@ -10,6 +10,7 @@ import {InputNumber} from "primereact/inputnumber";
 export default function ConditionFilter({onConditionChangeChild, onConditionValueChangeChild}: any) {
     // Constant that contains the selected condition
     const [selectedConditions, setSelectedConditions] = useState<any>([]);
+    const [isFieldDisabled, setIsFieldDisabled] = useState<boolean>(true);
 
     /**
      * This function is a callback function for the checkbox component.
@@ -18,11 +19,13 @@ export default function ConditionFilter({onConditionChangeChild, onConditionValu
      */
     const onConditionChange = (e: { checked: boolean; value: any; }) => {
         let tempSelectedConditions = [...selectedConditions];
+
         if (e.checked)
             tempSelectedConditions.push(e.value);
         else
             tempSelectedConditions.splice(selectedConditions.indexOf(e.value), 1);
 
+        tempSelectedConditions.length !== 0 ? setIsFieldDisabled(false) : setIsFieldDisabled(true);
         setSelectedConditions(tempSelectedConditions);
 
         // Call the parent function to update the filtered pokemon.
@@ -32,6 +35,7 @@ export default function ConditionFilter({onConditionChangeChild, onConditionValu
     const onConditionValueChange = (e: { value: any; }) => {
         onConditionValueChangeChild(e.value);
     }
+
     return (
         <div className="detail-container">
             <div className={"field-checkboxes"}>
@@ -51,7 +55,8 @@ export default function ConditionFilter({onConditionChangeChild, onConditionValu
                     <label htmlFor="condition3">{"\>"}</label>
                 </div>
             </div>
-            <InputNumber inputId="minmax-buttons" mode="decimal" disabled={selectedConditions.length === 0} min={0} onValueChange={event => {
+            <InputNumber inputId="minmax-buttons" mode="decimal" disabled={isFieldDisabled}
+                         allowEmpty={false} min={0} onValueChange={event => {
                 onConditionValueChange(event.target)
             }}/>
         </div>
