@@ -96,7 +96,6 @@ export default function ChartPage() {
         if (filters.conditions !== null&&filters.conditionValue === null) {
             filters.conditionValue = 0;
         }
-        console.log(filters);
         fetch("/src/assets/dataExamplePokemon.json")
             .then(response => response.json())
             .then(data => {
