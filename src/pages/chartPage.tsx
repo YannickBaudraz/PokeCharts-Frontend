@@ -23,7 +23,7 @@ export default function ChartPage() {
     // Constant that contains the selected stat
     const [selectedStat, setSelectedStat] = useState<any>('Health');
     // Constant that contains the selected condition
-    const [selectedCondition, setSelectedCondition] = useState<any>(null);
+    const [selectedConditions, setSelectedConditions] = useState<any>(null);
     // Constant that contains the selected condition value
     const [selectedConditionValue, setSelectedConditionValue] = useState<any>(null);
 
@@ -36,7 +36,7 @@ export default function ChartPage() {
     }
 
     const onConditionChange = (conditions: any) => {
-        setSelectedCondition(conditions);
+        setSelectedConditions(conditions);
     }
 
     const onConditionValueChange = (value: any) => {
@@ -107,8 +107,6 @@ export default function ChartPage() {
                     setFilteredPokemon([]);
                 }
             });
-        console.log(selectedType + " " + selectedStat + " " + selectedCondition + " " + selectedConditionValue);
-
     }
 
     return (
