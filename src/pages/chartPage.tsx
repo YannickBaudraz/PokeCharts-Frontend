@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import "/src/assets/style/filter.css";
 
 import Card from "../components/card";
@@ -91,7 +91,10 @@ export default function ChartPage() {
             types: selectedType,
             stat: selectedStat,
             conditions: selectedConditions,
-            conditionValue: selectedConditionValue
+            conditionValue: selectedConditions !== null ? selectedConditionValue : null
+        }
+        if (filters.conditions !== null&&filters.conditionValue === null) {
+            filters.conditionValue = 0;
         }
         console.log(filters);
         fetch("/src/assets/dataExamplePokemon.json")
