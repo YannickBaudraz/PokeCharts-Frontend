@@ -24,9 +24,9 @@ export default function TypeFilter({onTypeChangeChild}: any) {
             tempSelectedTypes.splice(selectedTypes.indexOf(e.value), 1);
 
         setSelectedTypes(tempSelectedTypes);
-
+        
         // Call the parent function to update the filtered pokemon.
-        onTypeChangeChild(tempSelectedTypes);
+        onTypeChangeChild(tempSelectedTypes.length > 0 ? tempSelectedTypes : null);
     }
 
     /**
