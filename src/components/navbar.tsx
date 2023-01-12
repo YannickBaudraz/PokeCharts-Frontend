@@ -1,4 +1,4 @@
-import '/src/assets/css/navbar.css';
+import '/src/assets/style/navbar.css';
 import {Link} from "react-router-dom";
 import {Button} from 'primereact/button';
 
@@ -11,8 +11,8 @@ export default function Navbar() {
                 <Button label="Home" className="p-button-rounded p-button-text"/>
             </Link>
 
-            <Link to={'/chart'} className={'navbar_link'}>
-                <Button label="Chart" className="p-button-rounded p-button-text"/>
+            <Link to={'/search'} className={'navbar_link'}>
+                <Button label="Search" className="p-button-rounded p-button-text"/>
             </Link>
 
             <Link to={'/detail'} className={'navbar_link'}>
