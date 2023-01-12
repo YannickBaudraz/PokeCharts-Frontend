@@ -10,9 +10,7 @@ import {Chart} from "primereact/chart";
 import {Button} from "primereact/button";
 
 export default function ChartPage() {
-    /* Old code that get all the data from the json file at the beginning
-    const [allPokemon, setAllPokemon] = useState<any>([]);*/
-    // New code that gets the data from the json file when the user clicks on the button
+    // Array that will contain every pokemon filtered
     const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
     // Boolean to check if the data is loading
     const [loadingPokemon, setLoadingPokemon] = useState<boolean>(true);
@@ -27,22 +25,27 @@ export default function ChartPage() {
     // Constant that contains the selected condition value
     const [selectedConditionValue, setSelectedConditionValue] = useState<any>(null);
 
+    // Function that is called when the type filter is changed
     const onTypeChange = (types: any) => {
         setSelectedType(types);
     }
 
+    // Function that is called when the stat filter is changed
     const onStatChange = (stat: any) => {
         setSelectedStat(stat);
     }
 
+    // Function that is called when the condition filter is changed
     const onConditionChange = (conditions: any) => {
         setSelectedConditions(conditions);
     }
 
+    // Function that is called when the condition value filter is changed
     const onConditionValueChange = (value: any) => {
         setSelectedConditionValue(value);
     }
 
+    // Constant that contains the data for the chart
     const basicData = {
         labels: filteredPokemon.map((pokemon: any) => pokemon.name),
         datasets: [
@@ -55,6 +58,7 @@ export default function ChartPage() {
         ],
     };
 
+    // Constant that contains the options for the chart
     let basicOptions = {
         indexAxis: 'y',
         plugins: {
@@ -86,25 +90,28 @@ export default function ChartPage() {
 
     function submitFilters() {
         //TODO : Construct the query that will be sent to the backend, which will return the filtered data
-        // Create an object that will contain the filters
         let filters = {
             types: selectedType,
             stat: selectedStat,
             conditions: selectedConditions,
             conditionValue: selectedConditions !== null ? selectedConditionValue : null
         }
-        if (filters.conditions !== null&&filters.conditionValue === null) {
+
+        if (filters.conditions !== null && filters.conditionValue === null) {
             filters.conditionValue = 0;
         }
+
         fetch("/src/assets/dataExamplePokemon.json")
             .then(response => response.json())
             .then(data => {
                 setLoadingPokemon(false);
+                // Verify if a type is selected and filter the data
                 if (selectedType !== null) {
                     setFilteredPokemon(data.filter((pokemon: any) => {
                         return pokemon.types.some((type: any) => selectedType.includes(type));
                     }));
                 } else {
+                    // If no type is selected, set the filtered data to the original data
                     setLoadingPokemon(true)
                     setFilteredPokemon([]);
                 }
@@ -116,7 +123,8 @@ export default function ChartPage() {
             <div className="filter-container">
                 <TypeFilter onTypeChangeChild={onTypeChange}/>
                 <StatFilter onStatChangeChild={onStatChange}/>
-                <ConditionFilter onConditionChangeChild={onConditionChange} onConditionValueChangeChild={onConditionValueChange }/>
+                <ConditionFilter onConditionChangeChild={onConditionChange}
+                                 onConditionValueChangeChild={onConditionValueChange}/>
                 <Button label="Filter" onClick={submitFilters}/>
             </div>
             <div className={"switch-container"}>
