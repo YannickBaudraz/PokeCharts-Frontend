@@ -6,45 +6,39 @@ import TypeFilter from "../components/typeFilter";
 import StatFilter from "../components/statFilter";
 import {InputSwitch} from "primereact/inputswitch";
 import {Chart} from "primereact/chart";
+import {Button} from "primereact/button";
 
 export default function ChartPage() {
-    const [pokemon, setPokemon] = useState<any>([]);
+    /* Old code that get all the data from the json file at the beginning
+    const [allPokemon, setAllPokemon] = useState<any>([]);*/
+    // New code that gets the data from the json file when the user clicks on the button
     const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
+    // Boolean to check if the data is loading
     const [loadingPokemon, setLoadingPokemon] = useState<boolean>(true);
+    // Boolean to switch between the chart and the table
     const [switchFilter, setSwitchFilter] = useState<boolean>(false);
+    // Constant that contains the selected types
     const [selectedType, setSelectedType] = useState<any>(null);
-
-
-    useEffect(() => {
-        fetch("/src/assets/dataExamplePokemon.json")
-            .then(response => response.json())
-            .then(data => {
-                setPokemon(data);
-                setLoadingPokemon(false);
-                setFilteredPokemon(data);
-                setSelectedType("Health");
-            });
-    }, []);
+    // Constant that contains the selected stat
+    const [selectedStat, setSelectedStat] = useState<any>('Health');
+    // Constant that contains the selected condition
+    const [selectedCondition, setSelectedCondition] = useState<any>(null);
+    // Constant that contains the selected condition value
+    const [selectedConditionValue, setSelectedConditionValue] = useState<any>(null);
 
     const onTypeChange = (types: any) => {
-        if (types.length > 0) {
-            setFilteredPokemon(pokemon.filter((pokemon: any) => {
-                return pokemon.types.some((type: any) => types.includes(type));
-            }));
-        } else {
-            setFilteredPokemon(pokemon);
-        }
+        setSelectedType(types);
     }
 
     const onStatChange = (stat: any) => {
-        setSelectedType(stat);
+        setSelectedStat(stat);
     }
 
     const basicData = {
         labels: filteredPokemon.map((pokemon: any) => pokemon.name),
         datasets: [
             {
-                label: selectedType,
+                label: selectedStat,
                 data: filteredPokemon.map((pokemon: any) => selectedType === "Health" ? pokemon.stats.hp : selectedType === "Attack" ? pokemon.stats.attack : selectedType === "Defense" ? pokemon.stats.defense : selectedType === "Speed" ? pokemon.stats.speed : selectedType === "Special Attack" ? pokemon.stats.specialAttack : pokemon.stats.specialDefense),
                 fill: false,
                 backgroundColor: '#6366f1',
@@ -81,17 +75,38 @@ export default function ChartPage() {
         },
     };
 
+    function submitFilters() {
+        //TODO : Construct the query that will be sent to the backend, which will return the filtered data
+        //TODO : Set the filtered data to the filteredPokemon constant
+        fetch("/src/assets/dataExamplePokemon.json")
+            .then(response => response.json())
+            .then(data => {
+                setLoadingPokemon(false);
+                if (selectedType !== null) {
+                    setFilteredPokemon(data.filter((pokemon: any) => {
+                        return pokemon.types.some((type: any) => selectedType.includes(type));
+                    }));
+                } else {
+                    setLoadingPokemon(true)
+                    setFilteredPokemon([]);
+                }
+            });
+        console.log(selectedType + " " + selectedStat + " " + selectedCondition + " " + selectedConditionValue);
+
+    }
+
     return (
         <>
             <div className="filter-container">
                 <TypeFilter onTypeChangeChild={onTypeChange}/>
                 <StatFilter onStatChangeChild={onStatChange}/>
+                <Button label="Filter" onClick={submitFilters}/>
                 <InputSwitch checked={switchFilter} onChange={(e) => setSwitchFilter(e.value)}/>
             </div>
-            {loadingPokemon && <h1>Loading...</h1>}
+            {loadingPokemon && <h1>Apply filters to get the needed Pokemon.</h1>}
             {!loadingPokemon &&
                 <div className="content-container">
-                    {filteredPokemon.length === 0 && <h1>No pokemon found of this type.</h1>}
+                    {filteredPokemon.length === 0 && selectedType !== null && <h1>No pokemon found of this type.</h1>}
                     {!switchFilter ?
                         <div className="pokemon-container">
                             {filteredPokemon.map((pokemon: any, index: number) => {
@@ -99,7 +114,8 @@ export default function ChartPage() {
                             })}
                         </div> :
                         <div className="chart-container">
-                            {filteredPokemon.length !== 0 && <Chart type="bar" data={basicData} options={basicOptions}/>}
+                            {filteredPokemon.length !== 0 &&
+                                <Chart type="bar" data={basicData} options={basicOptions}/>}
                         </div>
                     }
                 </div>
