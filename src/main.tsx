@@ -20,6 +20,9 @@ export default function App() {
                 <Route path="/detail" element={<Layout/>}>
                     <Route index element={<Detail/>}/>
                 </Route>
+                <Route path="/detail/:name" element={<Layout/>}>
+                    <Route index element={<Detail/>}/>
+                </Route>
             </Routes>
         </BrowserRouter>
     );
