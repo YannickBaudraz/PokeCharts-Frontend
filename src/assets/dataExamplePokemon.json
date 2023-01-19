@@ -4,7 +4,7 @@
     "name": "Pikachu",
     "height": 0.4,
     "weight": 6.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
     "types": [
       "Electric"
     ],
@@ -22,7 +22,7 @@
     "name": "Raichu",
     "height": 0.8,
     "weight": 30.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/26.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/26.png",
     "types": [
       "Electric"
     ],
@@ -40,7 +40,7 @@
     "name": "Sandshrew",
     "height": 0.6,
     "weight": 12.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/27.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/27.png",
     "types": [
       "Ground"
     ],
@@ -58,7 +58,7 @@
     "name": "Sandslash",
     "height": 1.0,
     "weight": 29.5,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/28.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/28.png",
     "types": [
       "Ground"
     ],
@@ -76,7 +76,7 @@
     "name": "Nidoran-f",
     "height": 0.4,
     "weight": 7.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/29.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/29.png",
     "types": [
       "Poison"
     ],
@@ -94,7 +94,7 @@
     "name": "Nidorina",
     "height": 0.8,
     "weight": 20.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/30.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/30.png",
     "types": [
       "Poison"
     ],
@@ -112,7 +112,7 @@
     "name": "Nidoqueen",
     "height": 1.3,
     "weight": 60.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/31.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/31.png",
     "types": [
       "Poison",
       "Ground"
@@ -131,7 +131,7 @@
     "name": "Nidoran-m",
     "height": 0.5,
     "weight": 9.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/32.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/32.png",
     "types": [
       "Poison"
     ],
@@ -149,7 +149,7 @@
     "name": "Nidorino",
     "height": 0.9,
     "weight": 19.5,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/33.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/33.png",
     "types": [
       "Poison"
     ],
@@ -167,7 +167,7 @@
     "name": "Nidoking",
     "height": 1.4,
     "weight": 62.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/34.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/34.png",
     "types": [
       "Poison",
       "Ground"
@@ -186,7 +186,7 @@
     "name": "Clefairy",
     "height": 0.6,
     "weight": 7.5,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/35.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/35.png",
     "types": [
       "Fairy"
     ],
@@ -204,7 +204,7 @@
     "name": "Clefable",
     "height": 1.3,
     "weight": 40.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/36.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/36.png",
     "types": [
       "Fairy"
     ],
@@ -222,7 +222,7 @@
     "name": "Vulpix",
     "height": 0.6,
     "weight": 9.9,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/37.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png",
     "types": [
       "Fire"
     ],
@@ -240,7 +240,7 @@
     "name": "Ninetales",
     "height": 1.1,
     "weight": 19.9,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/38.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/38.png",
     "types": [
       "Fire"
     ],
@@ -258,7 +258,7 @@
     "name": "Jigglypuff",
     "height": 0.5,
     "weight": 5.5,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/39.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/39.png",
     "types": [
       "Normal",
       "Fairy"
@@ -277,7 +277,7 @@
     "name": "Wigglytuff",
     "height": 1.0,
     "weight": 12.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/40.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/40.png",
     "types": [
       "Normal",
       "Fairy"
@@ -296,7 +296,7 @@
     "name": "Zubat",
     "height": 0.8,
     "weight": 7.5,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/41.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/41.png",
     "types": [
       "Poison",
       "Flying"
@@ -315,7 +315,7 @@
     "name": "Golbat",
     "height": 1.6,
     "weight": 55.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/42.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/42.png",
     "types": [
       "Poison",
       "Flying"
@@ -334,7 +334,7 @@
     "name": "Oddish",
     "height": 0.5,
     "weight": 5.4,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/43.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/43.png",
     "types": [
       "Grass",
       "Poison"
@@ -353,7 +353,7 @@
     "name": "Gloom",
     "height": 0.8,
     "weight": 8.6,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/44.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/44.png",
     "types": [
       "Grass",
       "Poison"
@@ -372,7 +372,7 @@
     "name": "Vileplume",
     "height": 1.2,
     "weight": 18.6,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/45.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/45.png",
     "types": [
       "Grass",
       "Poison"
@@ -391,7 +391,7 @@
     "name": "Paras",
     "height": 0.3,
     "weight": 5.4,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/46.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/46.png",
     "types": [
       "Bug",
       "Grass"
@@ -410,7 +410,7 @@
     "name": "Parasect",
     "height": 1.0,
     "weight": 29.5,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/47.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/47.png",
     "types": [
       "Bug",
       "Grass"
@@ -429,7 +429,7 @@
     "name": "Venonat",
     "height": 1.0,
     "weight": 30.0,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/48.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/48.png",
     "types": [
       "Bug",
       "Poison"
@@ -448,7 +448,7 @@
     "name": "Venomoth",
     "height": 1.5,
     "weight": 12.5,
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/49.png",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/49.png",
     "types": [
       "Bug",
       "Poison"
@@ -460,6 +460,204 @@
       "specialAttack": 90,
       "specialDefense": 75,
       "speed": 90
+    }
+  },
+  {
+    "id": 242,
+    "name": "Blissey",
+    "height": 1.5,
+    "weight": 46.8,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/242.png",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 255,
+      "attack": 10,
+      "defense": 10,
+      "specialAttack": 75,
+      "specialDefense": 135,
+      "speed": 55
+    }
+  },
+  {
+    "id": 297,
+    "name": "Hariyama",
+    "height": 2.3,
+    "weight": 253.8,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/297.png",
+    "types": [
+      "Fighting"
+    ],
+    "stats": {
+      "hp": 144,
+      "attack": 120,
+      "defense": 60,
+      "specialAttack": 40,
+      "specialDefense": 60,
+      "speed": 50
+    }
+  },
+  {
+    "id": 403,
+    "name": "Shinx",
+    "height": 0.5,
+    "weight": 9.5,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/403.png",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 65,
+      "defense": 34,
+      "specialAttack": 40,
+      "specialDefense": 34,
+      "speed": 45
+    }
+  },
+  {
+    "id": 404,
+    "name": "Luxio",
+    "height": 0.9,
+    "weight": 30.5,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/404.png",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 85,
+      "defense": 49,
+      "specialAttack": 60,
+      "specialDefense": 49,
+      "speed": 60
+    }
+  },
+  {
+    "id": 405,
+    "name": "Luxray",
+    "height": 1.4,
+    "weight": 42.0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/405.png",
+    "types": [
+      "Electric"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 120,
+      "defense": 79,
+      "specialAttack": 95,
+      "specialDefense": 79,
+      "speed": 70
+    }
+  },
+  {
+    "id": 493,
+    "name": "Arceus",
+    "height": 3.2,
+    "weight": 320.0,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/493.png",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 120,
+      "attack": 120,
+      "defense": 120,
+      "specialAttack": 120,
+      "specialDefense": 120,
+      "speed": 120
+    }
+  },
+  {
+    "id": 570,
+    "name": "Zorua",
+    "height": 0.7,
+    "weight": 12.5,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/570.png",
+    "types": [
+      "Dark"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 65,
+      "defense": 40,
+      "specialAttack": 80,
+      "specialDefense": 40,
+      "speed": 65
+    }
+  },
+  {
+    "id": 571,
+    "name": "Zoroark",
+    "height": 1.6,
+    "weight": 81.1,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/571.png",
+    "types": [
+      "Dark"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 105,
+      "defense": 60,
+      "specialAttack": 120,
+      "specialDefense": 60,
+      "speed": 105
+    }
+  },
+  {
+    "id": 572,
+    "name": "Minccino",
+    "height": 0.4,
+    "weight": 5.8,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/572.png",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 50,
+      "defense": 40,
+      "specialAttack": 40,
+      "specialDefense": 40,
+      "speed": 75
+    }
+  },
+  {
+    "id": 573,
+    "name": "Cinccino",
+    "height": 0.5,
+    "weight": 7.5,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/573.png",
+    "types": [
+      "Normal"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 95,
+      "defense": 60,
+      "specialAttack": 65,
+      "specialDefense": 60,
+      "speed": 115
+    }
+  },
+  {
+    "id": 574,
+    "name": "Gothita",
+    "height": 0.4,
+    "weight": 5.8,
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/574.png",
+    "types": [
+      "Psychic"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 30,
+      "defense": 50,
+      "specialAttack": 55,
+      "specialDefense": 65,
+      "speed": 45
     }
   }
 ]
