@@ -8,6 +8,7 @@ import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import { Link, useNavigate } from 'react-router-dom';
 import PokemonStateChart from "../components/Detail/PokemonStateChart"
+import PokemonStateInfo from '../components/Detail/PokemonStateInfo';
  
  
 export default function Detail() {
@@ -38,20 +39,6 @@ export default function Detail() {
       navigate(path);
     }
 
-   
-    const getHeight = () => {
-        if (pokemonData?.height) {
-            return (pokemonData?.height)/10 + 'm'
-        }   
-        return ''
-    }
-    const getWeight = () => {
-        if (pokemonData?.weight) {
-            return (pokemonData?.weight)/10 + 'kg'
-        }
-        return ''
-    } 
-
     return (
     <>
     <div className="pokemonList">
@@ -72,12 +59,7 @@ export default function Detail() {
              
     <div className="pokemonDetail" style={{display: displayPokemon() }}>
         <div className="pokemonInfo">      
-            <div className="pokemonSize">
-                <p><strong>ID</strong> {pokemonData?.id}</p>
-                <p><strong>Name</strong> {pokemonData?.name}</p>
-                <p><strong>Height</strong> {getHeight()} </p>
-                <p><strong>Weight</strong> {getWeight()} </p>
-            </div>
+            <PokemonStateInfo pokemon={pokemonData} />
             <Image src={pokemonImage()} alt={pokemonData?.name} width="250" preview />  
             <PokemonStateChart stats={stats} />
         </div>
