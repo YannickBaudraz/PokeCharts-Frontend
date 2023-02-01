@@ -4,10 +4,10 @@ import pokemons from '../data/pokemon.json';
 import poke from '../data/poke.json'; 
 import { ListBox } from 'primereact/listbox';
 import { Image } from 'primereact/image';
-import { Chart } from 'primereact/chart';
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
 import { Link, useNavigate } from 'react-router-dom';
+import PokemonStateChart from "../components/Detail/PokemonStateChart"
  
  
 export default function Detail() {
@@ -38,51 +38,19 @@ export default function Detail() {
       navigate(path);
     }
 
-    //data for chart
-    const statLabel = () => stats?.map((stat) => ( stat.pokemon_v2_stat.name ))
-    const statData = () =>  stats?.map((stat) => ( stat.base_stat ))
-
-    const [basicData] = useState({
-        labels: statLabel(),
-        datasets: [
-            {
-                label: 'bases stats',
-                backgroundColor: '#42A5F5',
-                data: statData()
-            },
-        ]
-    });
-
-    let horizontalOptions = {
-        indexAxis: 'y',
-        maintainAspectRatio: false,
-        aspectRatio: .8,
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#495057'
-                }
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color: '#495057'
-                },
-                grid: {
-                    color: '#ebedef'
-                }
-            },
-            y: {
-                ticks: {
-                    color: '#495057'
-                },
-                grid: {
-                    color: '#ebedef'
-                }
-            }
+   
+    const getHeight = () => {
+        if (pokemonData?.height) {
+            return (pokemonData?.height)/10 + 'm'
+        }   
+        return ''
+    }
+    const getWeight = () => {
+        if (pokemonData?.weight) {
+            return (pokemonData?.weight)/10 + 'kg'
         }
-    };
+        return ''
+    } 
 
     return (
     <>
@@ -105,14 +73,13 @@ export default function Detail() {
     <div className="pokemonDetail" style={{display: displayPokemon() }}>
         <div className="pokemonInfo">      
             <div className="pokemonSize">
-                <p>Id: {pokemonData?.id}</p>
-                <p>Height: {(pokemonData?.height) }</p>
-                <p>Weight: {pokemonData?.weight}</p>
+                <p><strong>ID</strong> {pokemonData?.id}</p>
+                <p><strong>Name</strong> {pokemonData?.name}</p>
+                <p><strong>Height</strong> {getHeight()} </p>
+                <p><strong>Weight</strong> {getWeight()} </p>
             </div>
             <Image src={pokemonImage()} alt={pokemonData?.name} width="250" preview />  
-            <div className="card">
-                <Chart type="bar" data={basicData} options={horizontalOptions} />
-            </div>   
+            <PokemonStateChart stats={stats} />
         </div>
     </div>                      
     </>        
