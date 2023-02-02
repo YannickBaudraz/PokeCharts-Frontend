@@ -38,6 +38,11 @@ export default function Compare() {
                 suggestedMin: 0,
                 suggestedMax: 130
             },
+        },
+        interaction: {
+            intersect: false,
+            mode: 'index',
+            axis: 'xy'
         }
     });
     // Create the bar chart options
