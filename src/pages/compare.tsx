@@ -169,13 +169,15 @@ export default function Compare() {
                     <div className={"comparison-container"}>
                         {selectedPokemon[0] !== undefined &&
                             <div className={"comparison-container-pokemon"}>
+                                <h1 className={"comparison-container-pokemon-id"}>{selectedPokemon[0].id}</h1>
+
                                 <img
                                     src={selectedPokemon[0].sprite}
                                     alt={selectedPokemon[0].name}
                                     className={"comparison-container-pokemon-image"}
                                 />
                                 <div className={"comparison-container-pokemon-details"}>
-                                    <h4>ID #{selectedPokemon[0].id} {selectedPokemon[0].name}</h4>
+                                    <h4>{selectedPokemon[0].name}</h4>
                                     <h5>Height: {selectedPokemon[0].height}</h5>
                                     <h5>Weight: {selectedPokemon[0].weight}</h5>
                                     <div className={"comparison-container-pokemon-types"}>
@@ -212,9 +214,11 @@ export default function Compare() {
                                 />
                                 <div className={"comparison-container-pokemon-details"}>
                                     <h4>{selectedPokemon[1].name}</h4>
-                                    <h5>Types: {selectedPokemon[1].types[0]}</h5>
                                     <h5>Height: {selectedPokemon[1].height}</h5>
                                     <h5>Weight: {selectedPokemon[1].weight}</h5>
+                                    <div className={"comparison-container-pokemon-types"}>
+                                        <Types types={selectedPokemon[1].types}/>
+                                    </div>
                                 </div>
                             </div>
                         }
