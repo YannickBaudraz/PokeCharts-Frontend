@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
-import pokemons from '../data/pokemon.json';
-import poke from '../data/poke.json'; 
+import pokemons from '../data/pokemons.json';
+import poke from '../data/pokemonStats.json'; 
 import { ListBox } from 'primereact/listbox';
 import { Image } from 'primereact/image';
 import 'primeicons/primeicons.css';
