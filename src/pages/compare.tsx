@@ -17,13 +17,6 @@ export default function Compare() {
     const [switchFilter, setSwitchFilter] = useState<any>(false);
     // Create the radar chart options with a min and max value
     const [radarOptions] = useState({
-        plugins: {
-            legend: {
-                labels: {
-                    color: '#495057'
-                }
-            }
-        },
         scales: {
             r: {
                 pointLabels: {
@@ -90,24 +83,28 @@ export default function Compare() {
         labels: ['Health', 'Attack', 'Defense', 'Speed', 'Special Attack', 'Special Defense'],
         datasets: [
             {
-                label: "Pokemon 1",
+                label: selectedPokemon[0] ? selectedPokemon[0].name : "Pokemon 1",
                 data: selectedPokemon[0] ? [selectedPokemon[0].stats.hp, selectedPokemon[0].stats.attack, selectedPokemon[0].stats.defense, selectedPokemon[0].stats.speed, selectedPokemon[0].stats.specialAttack, selectedPokemon[0].stats.specialDefense] : [],
                 backgroundColor: 'rgba(255,99,132,0.2)',
                 borderColor: 'rgba(255,99,132,1)',
+                borderWidth: 1,
                 pointBackgroundColor: 'rgba(255,99,132,1)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(255,99,132,1)',
+                pointHoverBorderColor: 'rgba(255,99,132,1)'
+
             },
             {
-                label: "Pokemon 2",
+                label: selectedPokemon[1] ? selectedPokemon[1].name : "Pokemon 2",
                 data: selectedPokemon[1] ? [selectedPokemon[1].stats.hp, selectedPokemon[1].stats.attack, selectedPokemon[1].stats.defense, selectedPokemon[1].stats.speed, selectedPokemon[1].stats.specialAttack, selectedPokemon[1].stats.specialDefense] : [],
-                backgroundColor: 'rgba(179,181,198,0.2)',
-                borderColor: 'rgba(179,181,198,1)',
-                pointBackgroundColor: 'rgba(179,181,198,1)',
+                backgroundColor: 'rgba(54,162,235,0.2)',
+                borderColor: 'rgba(54,162,235,1)',
+                borderWidth: 1,
+                pointBackgroundColor: 'rgba(54,162,235,1)',
                 pointBorderColor: '#fff',
                 pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(179,181,198,1)',
+                pointHoverBorderColor: 'rgba(54,162,235,1)'
+                
             }
         ],
     }
