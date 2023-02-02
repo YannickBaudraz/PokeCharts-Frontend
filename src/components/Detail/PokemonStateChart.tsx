@@ -1,21 +1,26 @@
 
 import { Chart } from 'primereact/chart';
 import { useState } from 'react';
+import PokemonStats from '../../models/PokemonStats';
 
-export default function PokemonStateChart( {stats}) {
+interface PokemonStateChartProps {
+    pokemonStats: PokemonStats
+}
+
+export default function PokemonStateChart( {pokemonStats}: PokemonStateChartProps) {
      //data for chart
-     const statLabel = () => stats?.map((stat: { pokemon_v2_stat: { name: any; }; }) => ( stat.pokemon_v2_stat.name ))
-     const statData = () =>  stats?.map((stat: { base_stat: any; }) => ( stat.base_stat ))
- 
-     const [basicData] = useState({
-         labels: statLabel(),
-         datasets: [
-             {
-                 label: 'bases stats',
-                 backgroundColor: '#42A5F5',
-                 data: statData()
-             },
-         ]
+    const statLabel = () => Object.entries(pokemonStats).map(([key, value]) => value.name);
+    const statData = () => Object.entries(pokemonStats).map(([key, value]) => value.value);
+    
+    const [basicData] = useState({
+        labels: statLabel(),
+        datasets: [
+            {
+                label: 'bases stats',
+                backgroundColor: '#42A5F5',
+                data: statData()
+            },
+        ]
      });
  
      let horizontalOptions = {
@@ -52,5 +57,5 @@ export default function PokemonStateChart( {stats}) {
         <div className="card">
             <Chart type="bar" data={basicData} options={horizontalOptions} />
         </div> 
-     )
+     )   
 }

@@ -19,7 +19,17 @@ export default function Detail() {
     const PokemonName = window.location.pathname.split('/')[2] || 'Select a Pokemon';
 
     const pokemonData = poke.find((pokemon) => pokemon.name == PokemonName);
-    const stats = pokemonData?.pokemon_v2_pokemonstats;
+    
+
+
+    const pokemonStats = () => {
+        const statArray = [];
+        const stats = pokemonData?.pokemon_v2_pokemonstats.forEach((stat) => {
+            statArray.push({name: stat.pokemon_v2_stat.name, value: stat.base_stat})
+        })
+        return statArray;
+    }
+    
     
     const displayListBox =()=> display || PokemonName == 'Select a Pokemon'? 'block' :'none'
     const displayPokemon =()=> pokemonData !== undefined? 'block' :'none'
@@ -54,7 +64,7 @@ export default function Detail() {
         <div className="pokemonInfo">      
             <PokemonStateInfo pokemon={pokemonData} />
             <PokemonImage pokemon={pokemonData} /> 
-            <PokemonStateChart stats={stats} />
+            <PokemonStateChart pokemonStats={pokemonStats()} />
         </div>
     </div>                      
     </>        
