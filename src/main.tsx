@@ -10,14 +10,16 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./pages/layout";
 import Home from "./pages/home";
 import Search from "./pages/search";
+import Compare from "./pages/compare";
 
 export default function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout/>}>
-                    <Route index element={<Home/>}/>
-                    <Route path="search" element={<Search/>}/>
+                <Route path={"/"} element={<Home/>}/>
+                <Route path={"/"} element={<Layout/>}>
+                    <Route path={"search"} element={<Search/>}/>
+                    <Route path={"compare"} element={<Compare/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

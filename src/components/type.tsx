@@ -77,17 +77,19 @@ export default function Types({types}: { types: any }) {
     ];
 
     return (
-        <div className="pokemon-types">
+        <>
             {types.map((type: string) => {
                 {
                     return (
-                        <div
-                            style={{backgroundColor: typesDetails.find((typeDetail: any) => typeDetail.name === type)?.color}}>
-                            <h2>{type}</h2>
+                        <div className={"pokemon-type"} style={{
+                            backgroundColor: typesDetails.find((typeDetail: any) => typeDetail.name === type)?.color,
+                            boxShadow: "0 0 20px " + typesDetails.find((typeDetail: any) => typeDetail.name === type)?.color
+                        }}>
+                            <img src={"/src/assets/images/icons/" + type + ".svg"} alt={type}/>
                         </div>
                     )
                 }
             })}
-        </div>
+        </>
     );
 }
