@@ -1,0 +1,92 @@
+[
+  {
+    "id": 25,
+    "moves": [
+      {
+        "name": "thunder-shock",
+        "url": "https://pokeapi.co/api/v2/move/84/"
+      },
+      {
+        "name": "thunderbolt",
+        "url": "https://pokeapi.co/api/v2/move/85/"
+      }
+    ]
+  },
+  {
+    "id": 26,
+    "moves": [
+      {
+        "name": "flamethrower",
+        "url": "https://pokeapi.co/api/v2/move/53/"
+      },
+      {
+        "name": "charge",
+        "url": "https://pokeapi.co/api/v2/move/268/"
+      },
+      {
+        "name": "fire-blast",
+        "url": "https://pokeapi.co/api/v2/move/126/"
+      },
+      {
+        "name": "flame-charge",
+        "url": "https://pokeapi.co/api/v2/move/488/"
+      },
+      {
+        "name": "flame-wheel",
+        "url": "https://pokeapi.co/api/v2/move/172/"
+      },
+      {
+        "name": "heat-wave",
+        "url": "https://pokeapi.co/api/v2/move/257/"
+      },
+      {
+        "name": "incinerate",
+        "url": "https://pokeapi.co/api/v2/move/510/"
+      },
+      {
+        "name": "inferno",
+        "url": "https://pokeapi.co/api/v2/move/517/"
+      },
+      {
+        "name": "overheat",
+        "url": "https://pokeapi.co/api/v2/move/315/"
+      },
+      {
+        "name": "searing-shot",
+        "url": "https://pokeapi.co/api/v2/move/545/"
+      },
+      {
+        "name": "will-o-wisp",
+        "url": "https://pokeapi.co/api/v2/move/261/"
+      }
+    ]
+  },
+  {
+    "id": 27,
+    "moves": [
+      {
+        "name": "scratch",
+        "url": "https://pokeapi.co/api/v2/move/10/"
+      },
+      {
+        "name": "x-scissor",
+        "url": "https://pokeapi.co/api/v2/move/404/"
+      }
+    ]
+  },
+  {
+    "id": 28,
+    "moves": [
+      {
+        "name": "water-gun",
+        "url": "https://pokeapi.co/api/v2/move/55/"
+      },
+      {
+        "name": "hydro-pump",
+        "url": "https://pokeapi.co/api/v2/move/56/"
+      }
+    ]
+  }
+]
+
+
