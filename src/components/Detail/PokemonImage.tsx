@@ -1,13 +1,15 @@
-
-import { useState } from 'react';
 import { Image } from 'primereact/image';
+import Pokemon from '../../models/Pokemon';
 
+interface PokemonImageProps {
+    pokemon:Pokemon
+}
 
-export default function PokemonStateInfo( {pokemon}) {
+export default function PokemonImage( {pokemon}:PokemonImageProps) {
 
     const pokemonImage = () => {
-        if (pokemon?.id) {
-            return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon?.id}.png`
+        if (pokemon.id) {
+            return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
         }
         return ''
     }

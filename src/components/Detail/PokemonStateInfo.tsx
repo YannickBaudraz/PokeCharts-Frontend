@@ -1,10 +1,13 @@
+import Pokemon from '../../models/Pokemon';
 
-import { useState } from 'react';
+interface PokemonStateInfoProps {
+    pokemon:Pokemon
+}
 
-
-export default function PokemonStateInfo( {pokemon}) {
-    const getHeight = () =>(pokemon?.height)/10 + 'm'
-    const getWeight = () => (pokemon?.weight)/10 + 'kg'
+export default function PokemonStateInfo( {pokemon}:PokemonStateInfoProps) {
+    
+    const getHeight = `${(pokemon.height)/10} m`
+    const getWeight = `${(pokemon.weight)/10} kg`
     const capitalize = (str:string) => str.charAt(0).toUpperCase() + str.slice(1);
     if (!pokemon) return null;
     return (
@@ -21,11 +24,11 @@ export default function PokemonStateInfo( {pokemon}) {
             </tr>
             <tr>
                 <th>Height</th>
-                <td>{getHeight()}</td>
+                <td>{getHeight}</td>
             </tr>
             <tr>
                 <th>Weight</th>
-                <td>{getWeight()}</td>
+                <td>{getWeight}</td>
             </tr>
         </tbody>
     </table>
