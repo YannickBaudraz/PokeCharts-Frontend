@@ -9,16 +9,16 @@ interface PokemonStateChartProps {
 
 export default function PokemonStateChart( {pokemonStats}: PokemonStateChartProps) {
      //data for chart
-    const statLabel = () => Object.entries(pokemonStats).map(([key, value]) => value.name);
-    const statData = () => Object.entries(pokemonStats).map(([key, value]) => value.value);
-    
+    const statLabel =  Object.keys(pokemonStats)
+    const statData =  Object.values(pokemonStats)
+        
     const [basicData] = useState({
-        labels: statLabel(),
+        labels: statLabel,
         datasets: [
             {
                 label: 'bases stats',
                 backgroundColor: '#42A5F5',
-                data: statData()
+                data: statData
             },
         ]
      });

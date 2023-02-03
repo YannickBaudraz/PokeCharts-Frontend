@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import PokemonStateChart from "../components/Detail/PokemonStateChart"
 import PokemonStateInfo from '../components/Detail/PokemonStateInfo';
 import PokemonImage from '../components/Detail/PokemonImage';
+import PokemonStats from '../models/PokemonStats';
  
  
 export default function Detail() {
@@ -26,16 +27,18 @@ export default function Detail() {
     const pokemonData = poke.find((pokemon) => pokemon.name == getPokemonName());
 
     
-
-
-    const pokemonStats = () => {
-        const statArray = [];
-        const stats = pokemonData?.pokemon_v2_pokemonstats.forEach((stat) => {
-            statArray.push({name: stat.pokemon_v2_stat.name, value: stat.base_stat})
-        })
-        return statArray;
+    interface Stats {
+        pokemonStats: PokemonStats
     }
-    
+
+    const getPokemonStats = ():Stats => {
+        const stats:Stats = {} as Stats;
+        pokemonData?.pokemon_v2_pokemonstats.forEach((stat) => {
+            // @ts-ignore
+            stats[stat.pokemon_v2_stat.name] = stat.base_stat;
+        });
+        return stats;     
+    }
     
     const displayListBox =()=> display || getPokemonName() == 'Select a Pokemon'? 'block' :'none'
     const displayPokemon =()=> pokemonData !== undefined? 'block' :'none'
@@ -70,7 +73,7 @@ export default function Detail() {
         <div className="pokemonInfo">      
             <PokemonStateInfo pokemon={pokemonData} />
             <PokemonImage pokemon={pokemonData} /> 
-            <PokemonStateChart pokemonStats={pokemonStats()} />
+            <PokemonStateChart pokemonStats={getPokemonStats()} />
         </div>
     </div>                      
     </>        
