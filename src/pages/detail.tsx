@@ -15,10 +15,16 @@ export default function Detail() {
     const [pokemon, setPokemon] = useState(null);
     const [display, setDisplay] = useState(false);
     
- 
-    const PokemonName = window.location.pathname.split('/')[2] || 'Select a Pokemon';
+     const getPokemonName = () => {
+        const pokemonName:any = window.location.pathname.split('/')[2];
+        const pokemon = pokemons.find((pokemon) => {
+            return pokemonName == pokemon.id || pokemonName == pokemon.name;
+        });
+        return pokemon?.name;
+    }
 
-    const pokemonData = poke.find((pokemon) => pokemon.name == PokemonName);
+    const pokemonData = poke.find((pokemon) => pokemon.name == getPokemonName());
+
     
 
 
@@ -31,7 +37,7 @@ export default function Detail() {
     }
     
     
-    const displayListBox =()=> display || PokemonName == 'Select a Pokemon'? 'block' :'none'
+    const displayListBox =()=> display || getPokemonName() == 'Select a Pokemon'? 'block' :'none'
     const displayPokemon =()=> pokemonData !== undefined? 'block' :'none'
 
     let navigate = useNavigate(); 
@@ -48,7 +54,7 @@ export default function Detail() {
         <Button 
             onClick={()=>setDisplay(!display)}
             className="pokemonTitle p-button-text p-button-plain p-button-lg">
-            {PokemonName} <i className="pi pi-angle-down"></i> 
+            {getPokemonName()} <i className="pi pi-angle-down"></i> 
         </Button>
         <ListBox className='listbox' value={null} options={pokemons} 
             onChange={(e) => {
