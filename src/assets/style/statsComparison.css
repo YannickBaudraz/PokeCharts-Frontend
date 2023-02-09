@@ -3,7 +3,7 @@
     width: 100%;
     padding: 0 30%;
     justify-content: space-between;
-    margin: 10px 0;
+    margin: 20px 0;
 }
 
 .input-container-items {
@@ -19,6 +19,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    margin: 20px 0;
 }
 
 .comparison-container > * {
