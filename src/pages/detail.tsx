@@ -62,31 +62,31 @@ export default function Detail() {
 
     return (
     <>
-        <div className="pokemonList">
-            <Button 
-                onClick={()=>setDisplay(!display)}
-                className="pokemonTitle p-button-text p-button-plain p-button-lg">
-                {getPokemonName()||'Select a Pokemon'} <i className="pi pi-angle-down"></i> 
-            </Button>
-            <ListBox className='listbox' value={null} options={pokemons} 
-                onChange={(e) => {
-                    setPokemon(e.value)
-                    routeChange(e)
-                }} 
-                multiple filter optionLabel="name"
-                style={{ width: '15rem', display: displayListBox}} 
-                listStyle={{ maxHeight: '250px' }} />
-        </div>
-        {pokemonData &&
-         <div className="pokemonDetail" style={{display: displayPokemon }}>
-         <div className="pokemonInfo">      
-             <PokemonStateInfo pokemon={getPokemonInfo()} />
-             <PokemonImage pokemon={getPokemonInfo()} /> 
-             <PokemonStateChart pokemonStats={getPokemonStats()} />
-         </div>
-     </div>  }
-            
-                    
+        <div className='details'>
+            <div className="pokemonList">
+                <Button 
+                    onClick={()=>setDisplay(!display)}
+                    className="pokemonTitle p-button-text p-button-plain p-button-lg">
+                    {getPokemonName()||'Select a Pokemon'} <i className="pi pi-angle-down"></i> 
+                </Button>
+                <ListBox className='listbox' value={null} options={pokemons} 
+                    onChange={(e) => {
+                        setPokemon(e.value)
+                        routeChange(e)
+                    }} 
+                    multiple filter optionLabel="name"
+                    style={{ width: '15rem', display: displayListBox}} 
+                    listStyle={{ maxHeight: '250px' }} />
+            </div>
+            {pokemonData &&
+            <div className="pokemonDetail" style={{display: displayPokemon }}>
+                <div className="pokemonInfo">      
+                    <PokemonStateInfo pokemon={getPokemonInfo()} />
+                    <PokemonImage pokemon={getPokemonInfo()} /> 
+                    <PokemonStateChart pokemonStats={getPokemonStats()} />
+                </div>
+            </div>  }
+        </div>                   
     </>        
     );
 }
