@@ -11,6 +11,7 @@ import Layout from "./pages/layout";
 import Home from "./pages/home";
 import Search from "./pages/search";
 import Compare from "./pages/compare";
+import Detail from './pages/detail';
 
 export default function App() {
     return (
@@ -20,6 +21,12 @@ export default function App() {
                 <Route path={"/"} element={<Layout/>}>
                     <Route path={"search"} element={<Search/>}/>
                     <Route path={"compare"} element={<Compare/>}/>
+                </Route>
+                <Route path="/detail" element={<Layout/>}>
+                    <Route index element={<Detail/>}/>
+                </Route>
+                <Route path="/detail/:name" element={<Layout/>}>
+                    <Route index element={<Detail/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>
