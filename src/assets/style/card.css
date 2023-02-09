@@ -6,6 +6,12 @@
     flex-direction: column;
     align-items: center;
     margin: 10px 0;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.pokemon-card:hover {
+    transform: scale(1.075);
 }
 
 .pokemon-name {
@@ -14,6 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .pokemon-image {
