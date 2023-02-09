@@ -21,12 +21,8 @@ export default function App() {
                 <Route path={"/"} element={<Layout/>}>
                     <Route path={"search"} element={<Search/>}/>
                     <Route path={"compare"} element={<Compare/>}/>
-                </Route>
-                <Route path="/detail" element={<Layout/>}>
-                    <Route index element={<Detail/>}/>
-                </Route>
-                <Route path="/detail/:name" element={<Layout/>}>
-                    <Route index element={<Detail/>}/>
+                    <Route path={"detail"} element={<Detail/>}/>
+                    <Route path={"/detail/:name"} element={<Detail/>}/>
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -11,6 +11,7 @@ import PokemonStateInfo from '../components/Detail/PokemonStateInfo';
 import PokemonImage from '../components/Detail/PokemonImage';
 import PokemonStats from '../models/PokemonStats';
 import Pokemon from '../models/Pokemon';
+import '/src/assets/style/detail.css';
  
  
 export default function Detail() {
