@@ -61,6 +61,11 @@
     justify-content: space-evenly;
 }
 
+.pokemon-container > a {
+    text-decoration: none;
+    color: black;
+}
+
 .content-container {
     text-align: center;
 }
