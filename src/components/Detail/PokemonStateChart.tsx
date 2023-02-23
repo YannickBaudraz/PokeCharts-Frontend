@@ -25,8 +25,9 @@ export default function PokemonStateChart( {pokemonStats}: PokemonStateChartProp
  
      let horizontalOptions = {
          indexAxis: 'y',
+         reponsive: true,
          maintainAspectRatio: false,
-         aspectRatio: .8,
+         aspectRatio: 1,
          plugins: {
              legend: {
                  labels: {

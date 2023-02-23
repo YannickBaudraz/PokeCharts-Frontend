@@ -13,7 +13,7 @@ export default function PokemonImage( {pokemon}:PokemonImageProps) {
         return ''
     }
      return (
-        <Image src={pokemonImage()} alt={pokemon?.name} width="250" preview /> 
+        <Image src={pokemonImage()} alt={pokemon?.name} width="500" preview /> 
      )
 }
 
