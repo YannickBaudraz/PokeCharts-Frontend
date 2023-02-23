@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import poke from '../data/pokemonStats.json';
 import { ListBox } from 'primereact/listbox';
 import 'primeicons/primeicons.css';
 import { Button } from 'primereact/button';
@@ -12,10 +11,10 @@ import PokemonDex from "../models/PokemonDex";
 import Pokemon from '../models/Pokemon';
 import PokemonStats from '../models/PokemonStats';
 import '/src/assets/style/detail.css';
-import {getAllPokemon} from "../services/pokemon-api";
+import PokemonApi from "../services/pokemon-api";
 
-
-const listPokemon = await getAllPokemon()
+const listPokemon = await PokemonApi.getAllPokemon();
+const poke = await PokemonApi.getPokemon();
  
 export default function Detail() {
     const [pokemon, setPokemon] = useState(null);
@@ -29,11 +28,11 @@ export default function Detail() {
         return pokemon?.name;
     }
 
-    const pokemonData = poke.find((pokemon) => pokemon.name == getPokemonName());
+    const pokemonData = poke.find((pokemon: { name: any; }) => pokemon.name == getPokemonName());
 
     const getPokemonStats = ():PokemonStats => {
         const stats:PokemonStats = {} as PokemonStats;
-        pokemonData?.pokemon_v2_pokemonstats.forEach((stat) => {
+        pokemonData?.pokemon_v2_pokemonstats.forEach((stat: { pokemon_v2_stat: { name: string; }; base_stat: any; }) => {
             // @ts-ignore
             stats[stat.pokemon_v2_stat.name] = stat.base_stat;
         });
@@ -63,22 +62,21 @@ export default function Detail() {
     }
 
     return (
-    <>
         <div className='details'>
             <div className="pokemonList">
                 <Button
                     onClick={()=>setDisplay(!display)}
                     className="pokemonTitle p-button-text p-button-plain p-button-lg">
-                   <h1 className='pokemonName'>{getPokemonName()||'Select a Pokemon'} <i className="pi pi-angle-down"></i></h1>
+                    <h1 className='pokemonName'>{getPokemonName()||'Select a Pokemon'} <i className="pi pi-angle-down"></i></h1>
                 </Button>
-                <ListBox className='listbox' value={null} options={listPokemon}
-                    onChange={(e) => {
-                        setPokemon(e.value)
-                        routeChange(e)
-                    }}
-                    multiple filter optionLabel="name"
-                    style={{ width: '15rem', display: displayListBox}}
-                    listStyle={{ maxHeight: '250px' }} />
+                <ListBox className='list' value={null} options={listPokemon}
+                         onChange={(e) => {
+                             setPokemon(e.value)
+                             routeChange(e)
+                         }}
+                         multiple filter optionLabel="name"
+                         style={{ width: '15rem', display: displayListBox}}
+                         listStyle={{ maxHeight: '250px' }} />
             </div>
             {pokemonData &&
                 <div className="pokemonDetail" style={{display: displayPokemon }}>
@@ -90,6 +88,5 @@ export default function Detail() {
                 </div>
             }
         </div>
-    </>
     );
 }
