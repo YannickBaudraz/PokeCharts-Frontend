@@ -21,4 +21,26 @@ export default class PokemonApi {
                 console.error('Error:', error);
             });
     }
+    public async getPokemonById(id: number) {
+        return fetch('https://localhost:7149/Pokemons/' + id)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                return data;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+    public async getPokemonByName(name: string) {
+        return fetch('https://localhost:7149/Pokemons/' + name)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                return data;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 }
