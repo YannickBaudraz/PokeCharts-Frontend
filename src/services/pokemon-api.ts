@@ -1,7 +1,7 @@
 export default class PokemonApi {
 
     public async getAllPokemon() {
-        return fetch('/src/data/ListPokemon.json')
+        return fetch('http://localhost:3000/ListPokemon')
             .then((response) => response.json())
             .then((data) => {
                 return data;
@@ -12,7 +12,7 @@ export default class PokemonApi {
     }
 
     public async getPokemon() {
-        return fetch('/src/data/pokemonStats.json')
+        return fetch('http://localhost:3000/pokemonStats')
             .then((response) => response.json())
             .then((data) => {
                 return data;
