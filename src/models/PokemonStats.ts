@@ -1,9 +1,7 @@
-export default interface PokemonStats {
+export default interface PokemonStat {
+    pokemon_v2_stat: {
+      name: string;
+    };
+    base_stat: number;
     id: number;
-    hp: number;
-    attack: number;
-    defense: number;
-    specialAttack: number;
-    specialDefense: number;
-    speed: number;
-}
+  }
