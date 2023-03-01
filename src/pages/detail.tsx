@@ -21,7 +21,6 @@ export default function Detail() {
     const [display, setDisplay] = useState(false);
     const [pokemonDetail, setPokemonDetail] = useState<Pokemon>();
 
-
     const getPokemonName = () => {
         const pokemonName: any = window.location.pathname.split('/')[2];
         const pokemon = listPokemon.find((pokemon: PokemonDex) => {
@@ -29,7 +28,8 @@ export default function Detail() {
         });
         return pokemon?.name;
     }
-    if (getPokemonName() == undefined && getPokemonName() !== pokemon ) {
+
+    if (pokemon == "Select a Pokemon" || getPokemonName() == undefined || getPokemonName() !== pokemon) {
         setPokemon(getPokemonName());
     }
 
@@ -42,7 +42,7 @@ export default function Detail() {
                 console.log('Error occured when fetching pokemon data');
             });
     }, [getPokemonName()]);
-    
+
     const getPokemonStats = (): PokemonStats => {
         const stats: PokemonStats = {} as PokemonStats;
         pokemonDetail?.pokemon_v2_pokemonstats.forEach((stat: { pokemon_v2_stat: { name: string; }; base_stat: any; }) => {
@@ -51,7 +51,6 @@ export default function Detail() {
         });
         return stats;
     }
-
     const getPokemonInfo = () => {
         const info: Pokemon = {} as Pokemon;
         if (pokemonDetail) {
