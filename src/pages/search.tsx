@@ -8,6 +8,9 @@ import ConditionFilter from "../components/conditionFilter";
 import {InputSwitch} from "primereact/inputswitch";
 import {Chart} from "primereact/chart";
 import {Button} from "primereact/button";
+import PokemonApi from "../services/pokemon-api";
+
+const pokemonApi = new PokemonApi();
 
 export default function Search() {
     // Array that will contain every pokemon filtered
@@ -101,9 +104,7 @@ export default function Search() {
             filters.conditionValue = 0;
         }
 
-        fetch("/src/assets/dataExamplePokemon.json")
-            .then(response => response.json())
-            .then(data => {
+        pokemonApi.getFilteredPokemon(filters).then((data: any) => {
                 setLoadingPokemon(false);
                 // Verify if a type is selected and filter the data
                 if (selectedType !== null) {
