@@ -1,9 +1,13 @@
-import PokemonStat from "./PokemonStats";
+import PokemonSprites from './PokemonSprites';
+import Stats from './Stats';
+import Type from './Type';
 
 export default interface Pokemon {
-    id: number;
-    name: string;
-    height: number;
-    weight: number;
-    pokemon_v2_pokemonstats: PokemonStat[];
-  }
+  id: number;
+  name: string;
+  height: number;
+  weight: number;
+  sprites: PokemonSprites;
+  stats: Stats;
+  types: Type[];
+}

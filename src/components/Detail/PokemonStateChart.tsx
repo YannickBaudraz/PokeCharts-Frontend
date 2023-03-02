@@ -1,7 +1,7 @@
 
 import { Chart } from 'primereact/chart';
 import { useState } from 'react';
-import PokemonStats from '../../models/PokemonStats';
+import PokemonStats from '../../models/Stats';
 
 interface PokemonStateChartProps {
     pokemonStats: PokemonStats
@@ -11,7 +11,7 @@ export default function PokemonStateChart( {pokemonStats}: PokemonStateChartProp
      //data for chart
     const statLabel =  Object.keys(pokemonStats)
     const statData =  Object.values(pokemonStats)
-        
+
     const [basicData] = useState({
         labels: statLabel,
         datasets: [
@@ -22,7 +22,7 @@ export default function PokemonStateChart( {pokemonStats}: PokemonStateChartProp
             },
         ]
      });
- 
+
      let horizontalOptions = {
          indexAxis: 'y',
          reponsive: true,
@@ -57,6 +57,6 @@ export default function PokemonStateChart( {pokemonStats}: PokemonStateChartProp
      return (
         <div className="card">
             <Chart type="bar" data={basicData} options={horizontalOptions} />
-        </div> 
-     )   
+        </div>
+     )
 }
