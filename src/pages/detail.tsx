@@ -1,16 +1,15 @@
-import {useEffect, useState} from 'react';
-import {ListBox} from 'primereact/listbox';
+import '/src/assets/style/detail.css';
 import 'primeicons/primeicons.css';
 import {Button} from 'primereact/button';
+import {ListBox} from 'primereact/listbox';
+import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import PokemonStateChart from "../components/Detail/PokemonStateChart"
-import PokemonStateInfo from '../components/Detail/PokemonStateInfo';
 import PokemonImage from '../components/Detail/PokemonImage';
-import PokemonDex from "../models/PokemonDex";
+import PokemonStateChart from '../components/Detail/PokemonStateChart';
+import PokemonStateInfo from '../components/Detail/PokemonStateInfo';
 import Pokemon from '../models/Pokemon';
-import PokemonStats from '../models/PokemonStats';
-import '/src/assets/style/detail.css';
-import PokemonApi from "../services/pokemon-api";
+import PokemonDex from '../models/PokemonDex';
+import PokemonApi from '../services/pokemon-api';
 
 const pokemonApi = new PokemonApi();
 
@@ -43,14 +42,6 @@ export default function Detail() {
             });
     }, [getPokemonName()]);
 
-    const getPokemonStats = (): PokemonStats => {
-        const stats: PokemonStats = {} as PokemonStats;
-        pokemonDetail?.pokemon_v2_pokemonstats.forEach((stat: { pokemon_v2_stat: { name: string; }; base_stat: any; }) => {
-            // @ts-ignore
-            stats[stat.pokemon_v2_stat.name] = stat.base_stat;
-        });
-        return stats;
-    }
     const getPokemonInfo = () => {
         const info: Pokemon = {} as Pokemon;
         if (pokemonDetail) {
@@ -96,7 +87,7 @@ export default function Detail() {
                     <div className="pokemonInfo">
                         <PokemonStateInfo pokemon={getPokemonInfo()}/>
                         <PokemonImage pokemon={getPokemonInfo()}/>
-                        <PokemonStateChart pokemonStats={getPokemonStats()}/>
+                        <PokemonStateChart pokemonStats={pokemonDetail.stats}/>
                     </div>
                 </div>
             }
