@@ -43,4 +43,27 @@ export default class PokemonApi {
                 console.error('Error:', error);
             });
     }
+    public async getPokemonNames() {
+        return fetch('https://localhost:7149/Pokemons/Names')
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+    public async getFilteredPokemon(filters: object) {
+        return fetch("https://localhost:7149/Pokemons/Filtered", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(filters)
+        })
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            });
+    }
 }
