@@ -3,89 +3,89 @@ import "/src/assets/style/type.css";
 export default function Types({types}: { types: any }) {
     const typesDetails = [
         {
-            name: "Normal",
+            name: "normal",
             color: "#9FA39D"
         },
         {
-            name: "Fire",
+            name: "fire",
             color: "#FF9900"
         },
         {
-            name: "Water",
+            name: "water",
             color: "#14A8FF"
         },
         {
-            name: "Grass",
+            name: "grass",
             color: "#1CD80E"
         },
         {
-            name: "Electric",
+            name: "electric",
             color: "#FFDE00"
         },
         {
-            name: "Ice",
+            name: "ice",
             color: "#2EE4C6"
         },
         {
-            name: "Fighting",
+            name: "fighting",
             color: "#FF225C"
         },
         {
-            name: "Poison",
+            name: "poison",
             color: "#F149FF"
         },
         {
-            name: "Ground",
+            name: "ground",
             color: "#FF6B0D"
         },
         {
-            name: "Flying",
+            name: "flying",
             color: "#89BDFF"
         },
         {
-            name: "Psychic",
+            name: "psychic",
             color: "#FF6C64"
         },
         {
-            name: "Bug",
+            name: "bug",
             color: "#7BCF00"
         },
         {
-            name: "Rock",
+            name: "rock",
             color: "#D8BC5A"
         },
         {
-            name: "Ghost",
+            name: "ghost",
             color: "#4E6AFF"
         },
         {
-            name: "Dragon",
+            name: "dragon",
             color: "#0076FF"
         },
         {
-            name: "Dark",
+            name: "dark",
             color: "#5A566A"
         },
         {
-            name: "Steel",
+            name: "steel",
             color: "#23A1BD"
         },
         {
-            name: "Fairy",
+            name: "fairy",
             color: "#FF8AFF"
         },
     ];
 
     return (
         <>
-            {types.map((type: string) => {
+            {types.map((type: any) => {
                 {
                     return (
                         <div className={"pokemon-type"} style={{
-                            backgroundColor: typesDetails.find((typeDetail: any) => typeDetail.name === type)?.color,
-                            boxShadow: "0 0 20px " + typesDetails.find((typeDetail: any) => typeDetail.name === type)?.color
+                            backgroundColor: typesDetails.find((typeDetail: any) => typeDetail.name === type.name)?.color,
+                            boxShadow: "0 0 20px " + typesDetails.find((typeDetail: any) => typeDetail.name === type.name)?.color
                         }}>
-                            <img src={"/src/assets/images/icons/" + type + ".svg"} alt={type}/>
+                            <img src={"/src/assets/images/icons/" + type.name + ".svg"} alt={type.name}/>
                         </div>
                     )
                 }
