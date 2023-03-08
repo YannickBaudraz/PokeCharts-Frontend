@@ -104,19 +104,12 @@ export default function Search() {
             filters.conditionValue = 0;
         }
 
-        pokemonApi.getFilteredPokemon(filters).then((data: any) => {
-                setLoadingPokemon(false);
-                // Verify if a type is selected and filter the data
-                if (selectedType !== null) {
-                    setFilteredPokemon(data.filter((pokemon: any) => {
-                        return pokemon.types.some((type: any) => selectedType.includes(type));
-                    }));
-                } else {
-                    // If no type is selected, set the filtered data to the original data
-                    setLoadingPokemon(true)
-                    setFilteredPokemon([]);
-                }
-            });
+        console.log(filters);
+
+        pokemonApi.getPokemonByFilters(selectedType, selectedStat, selectedConditions, filters.conditionValue).then((data: any) => {
+            setFilteredPokemon(data);
+            setLoadingPokemon(false);
+        });
     }
 
     return (
