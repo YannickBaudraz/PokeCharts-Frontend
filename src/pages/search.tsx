@@ -97,19 +97,21 @@ export default function Search() {
             types: selectedType,
             stat: selectedStat,
             conditions: selectedConditions,
-            conditionValue: selectedConditions !== null ? selectedConditionValue : null
+            conditionValue: selectedConditions !== null ? selectedConditionValue : 0
         }
 
         if (filters.conditions !== null && filters.conditionValue === null) {
             filters.conditionValue = 0;
         }
 
-        console.log(filters);
-
+        if (selectedType !== null) {
         pokemonApi.getPokemonByFilters(selectedType, selectedStat, selectedConditions, filters.conditionValue).then((data: any) => {
             setFilteredPokemon(data);
             setLoadingPokemon(false);
         });
+        } else {
+            setFilteredPokemon([]);
+        }
     }
 
     return (
