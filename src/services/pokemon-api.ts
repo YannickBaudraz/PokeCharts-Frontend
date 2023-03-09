@@ -58,7 +58,8 @@ export default class PokemonApi {
     }
 
     public async getPokemonByFilters(types: [], stat: any, conditions: [], conditionValue: any) {
-        return fetch('https://localhost:7149/Pokemons/Filter?types=' + types.toString() + '&stat=' + stat + '&conditions=' + conditions.toString() +  '&conditionValue=' + conditionValue)
+        const url = 'https://localhost:7149/Pokemons/Filter?types=' + types.toString().toLowerCase() + '&stat=' + stat.toLowerCase() + '&conditions=' + conditions + '&conditionValue=' + conditionValue;
+        return fetch(url)
             .then((response) => response.json())
             .then((data) => {
                 return data;
