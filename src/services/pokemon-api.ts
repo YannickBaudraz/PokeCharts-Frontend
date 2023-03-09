@@ -1,7 +1,7 @@
 export default class PokemonApi {
 
     public async getAllPokemon() {
-        return fetch('http://localhost:3000/ListPokemon')
+        return fetch(import.meta.env.VITE_BACKEND_URL + '/Pokemons')
             .then((response) => response.json())
             .then((data) => {
                 return data;
@@ -12,7 +12,7 @@ export default class PokemonApi {
     }
 
     public async getPokemon() {
-        return fetch('http://localhost:3000/pokemonStats')
+        return fetch(import.meta.env.VITE_BACKEND_URL + '/Pokemons')
             .then((response) => response.json())
             .then((data) => {
                 return data;
@@ -25,7 +25,6 @@ export default class PokemonApi {
         return fetch('https://localhost:7149/Pokemons/' + id)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 return data;
             })
             .catch((error) => {
@@ -36,7 +35,6 @@ export default class PokemonApi {
         return fetch('https://localhost:7149/Pokemons/' + name)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
                 return data;
             })
             .catch((error) => {
