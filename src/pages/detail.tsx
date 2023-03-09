@@ -15,6 +15,7 @@ const pokemonApi = new PokemonApi();
 
 const listPokemon = await pokemonApi.getAllPokemon();
 
+
 export default function Detail() {
     const [pokemon, setPokemon] = useState("Select a Pokemon");
     const [display, setDisplay] = useState(false);
@@ -28,9 +29,10 @@ export default function Detail() {
         return pokemon?.name;
     }
 
-    if (pokemon == "Select a Pokemon" || getPokemonName() == undefined || getPokemonName() !== pokemon) {
+    if (pokemon == "Select a Pokemon" ||  getPokemonName() !== pokemon) {
         setPokemon(getPokemonName());
     }
+
 
     useEffect(() => {
         pokemonApi.getPokemon()
