@@ -10,7 +10,7 @@ export default function Card({pokemon}: any, index: number) {
                     <h1>{pokemon.name}</h1>
                 </div>
                 <img
-                    src={pokemon.sprite}
+                    src={pokemon.sprites.shiny}
                     alt={pokemon.name}
                     className="pokemon-image"/>
                 <div className="pokemon-types">
