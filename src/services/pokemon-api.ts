@@ -1,29 +1,11 @@
 export default class PokemonApi {
 
-    public async getAllPokemon() {
-        return fetch(import.meta.env.VITE_BACKEND_URL + '/Pokemons')
-            .then((response) => response.json())
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }
-
-    public async getPokemon() {
-        return fetch(import.meta.env.VITE_BACKEND_URL + '/Pokemons')
-            .then((response) => response.json())
-            .then((data) => {
-                return data;
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-    }
-
+    /**
+     * This method get the Pokémon by his id
+     * @param id: pokemon id
+     */
     public async getPokemonById(id: number) {
-        return fetch('https://localhost:7149/Pokemons/' + id)
+        return fetch(import.meta.env.VITE_BACKEND_URL + id)
             .then((response) => response.json())
             .then((data) => {
                 return data;
@@ -33,8 +15,12 @@ export default class PokemonApi {
             });
     }
 
+    /**
+     * This method get the Pokémon by his name
+     * @param name: pokemon name
+     */
     public async getPokemonByName(name: string) {
-        return fetch('https://localhost:7149/Pokemons/' + name)
+        return fetch(import.meta.env.VITE_BACKEND_URL + 'Pokemons/' + name)
             .then((response) => response.json())
             .then((data) => {
                 return data;
@@ -44,8 +30,11 @@ export default class PokemonApi {
             });
     }
 
+    /**
+     * This method get all the Pokémon names
+     */
     public async getPokemonNames() {
-        return fetch('https://localhost:7149/Pokemons/Names')
+        return fetch(import.meta.env.VITE_BACKEND_URL + 'Pokemons/Names')
             .then((response) => response.json())
             .then((data) => {
                 return data;
@@ -55,8 +44,15 @@ export default class PokemonApi {
             });
     }
 
+    /**
+     * This method get all the Pokémon filtered by types, stat, conditions and condition value
+     * @param types: Contains the types of the Pokémon
+     * @param stat: Contains the stat of the Pokémon
+     * @param conditions: Contains the conditions that the Pokémon will be filtered
+     * @param conditionValue: Contains the value of the condition
+     */
     public async getPokemonByFilters(types: [], stat: any, conditions: [], conditionValue: any) {
-        const url = 'https://localhost:7149/Pokemons/Filter?types=' + types.toString().toLowerCase() + '&stat=' + stat.toLowerCase() + '&conditions=' + conditions + '&conditionValue=' + conditionValue;
+        const url = import.meta.env.VITE_BACKEND_URL + 'Pokemons/Filter?types=' + types.toString().toLowerCase() + '&stat=' + stat.toLowerCase() + '&conditions=' + conditions + '&conditionValue=' + conditionValue;
         return fetch(url)
             .then((response) => response.json())
             .then((data) => {
