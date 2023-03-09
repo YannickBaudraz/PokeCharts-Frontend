@@ -92,7 +92,6 @@ export default function Search() {
     };
 
     function submitFilters() {
-        //TODO : Construct the query that will be sent to the backend, which will return the filtered data
         let filters = {
             types: selectedType,
             stat: selectedStat,
