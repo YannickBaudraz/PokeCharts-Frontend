@@ -4,6 +4,9 @@ import {ListBox} from "primereact/listbox";
 import {Chart} from "primereact/chart";
 import {InputSwitch} from "primereact/inputswitch";
 import Types from "../components/type";
+import PokemonApi from "../services/pokemon-api";
+
+const pokemonApi = new PokemonApi();
 
 export default function StatsComparison({selectedPokemon, onPokemonChange}: any) {
     // Boolean to check if the data is loading
@@ -69,7 +72,7 @@ export default function StatsComparison({selectedPokemon, onPokemonChange}: any)
     const pokemonTemplate = (option: any) => {
         return (
             <div className="p-clearfix">
-                <div style={{fontSize: '18px', margin: '10px 10px 0 0'}}>{option.name}</div>
+                <div style={{fontSize: '18px', margin: '10px 10px 0 0'}}>{option}</div>
             </div>
         );
     };
@@ -108,12 +111,10 @@ export default function StatsComparison({selectedPokemon, onPokemonChange}: any)
     // It, currently, fetch the pokemon information from the JSON
     // It will be change to get the pokemon names from the API
     useEffect(() => {
-        fetch("/src/assets/dataExamplePokemon.json")
-            .then(response => response.json())
-            .then(data => {
-                setLoadingPokemonNames(false);
-                setPokemonNames(data);
-            });
+        pokemonApi.getPokemonNames().then((data) => {
+            setLoadingPokemonNames(false);
+            setPokemonNames(data);
+        });
     }, []);
 
     return (
@@ -142,7 +143,7 @@ export default function StatsComparison({selectedPokemon, onPokemonChange}: any)
                                 <h1 className={"comparison-container-pokemon-id"}>{selectedPokemon[0].id}</h1>
 
                                 <img
-                                    src={selectedPokemon[0].sprite}
+                                    src={selectedPokemon[0].sprites.main}
                                     alt={selectedPokemon[0].name}
                                     className={"comparison-container-pokemon-image"}
                                 />
@@ -178,7 +179,7 @@ export default function StatsComparison({selectedPokemon, onPokemonChange}: any)
                             <div className={"comparison-container-pokemon"}>
                                 <h1 className={"comparison-container-pokemon-id"}>{selectedPokemon[1].id}</h1>
                                 <img
-                                    src={selectedPokemon[1].sprite}
+                                    src={selectedPokemon[1].sprites.main}
                                     alt={selectedPokemon[1].name}
                                     className={"comparison-container-pokemon-image"}
                                 />

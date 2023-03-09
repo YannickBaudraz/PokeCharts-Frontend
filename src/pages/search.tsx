@@ -8,6 +8,9 @@ import ConditionFilter from "../components/conditionFilter";
 import {InputSwitch} from "primereact/inputswitch";
 import {Chart} from "primereact/chart";
 import {Button} from "primereact/button";
+import PokemonApi from "../services/pokemon-api";
+
+const pokemonApi = new PokemonApi();
 
 export default function Search() {
     // Array that will contain every pokemon filtered
@@ -89,33 +92,25 @@ export default function Search() {
     };
 
     function submitFilters() {
-        //TODO : Construct the query that will be sent to the backend, which will return the filtered data
         let filters = {
             types: selectedType,
             stat: selectedStat,
             conditions: selectedConditions,
-            conditionValue: selectedConditions !== null ? selectedConditionValue : null
+            conditionValue: selectedConditions !== null ? selectedConditionValue : 0
         }
 
         if (filters.conditions !== null && filters.conditionValue === null) {
             filters.conditionValue = 0;
         }
 
-        fetch("/src/assets/dataExamplePokemon.json")
-            .then(response => response.json())
-            .then(data => {
-                setLoadingPokemon(false);
-                // Verify if a type is selected and filter the data
-                if (selectedType !== null) {
-                    setFilteredPokemon(data.filter((pokemon: any) => {
-                        return pokemon.types.some((type: any) => selectedType.includes(type));
-                    }));
-                } else {
-                    // If no type is selected, set the filtered data to the original data
-                    setLoadingPokemon(true)
-                    setFilteredPokemon([]);
-                }
-            });
+        if (selectedType !== null) {
+        pokemonApi.getPokemonByFilters(selectedType, selectedStat, selectedConditions, filters.conditionValue).then((data: any) => {
+            setFilteredPokemon(data);
+            setLoadingPokemon(false);
+        });
+        } else {
+            setFilteredPokemon([]);
+        }
     }
 
     return (

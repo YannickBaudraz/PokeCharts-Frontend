@@ -1,7 +1,9 @@
 import {useState} from "react";
 import StatsComparison from "../components/statsComparison";
 import MovesComparison from "../components/movesComparison";
+import PokemonApi from "../services/pokemon-api";
 
+const pokemonApi = new PokemonApi();
 
 export default function Compare() {
     // Constant that contains all selected pokemon
@@ -9,7 +11,7 @@ export default function Compare() {
 
     function onPokemonChange(pokemon: any, isFirstListbox: boolean) {
         let tempSelectedPokemon = [...selectedPokemon];
-        getPokemonFromApi(pokemon.name).then((data: any) => {
+        getPokemonFromApi(pokemon).then((data: any) => {
             if (isFirstListbox) {
                 tempSelectedPokemon[0] = data;
             } else {
@@ -20,12 +22,7 @@ export default function Compare() {
     }
 
     function getPokemonFromApi(pokemonName: string) {
-        return fetch('/src/assets/dataExamplePokemon.json')
-            .then((response) => response.json())
-            .then((data) => {
-                // Filter the data list by the name of the pokemon
-                return data.filter((pokemon: any) => pokemon.name === pokemonName)[0];
-            });
+        return pokemonApi.getPokemonByName(pokemonName);
     }
 
     return (

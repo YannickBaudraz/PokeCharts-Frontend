@@ -44,7 +44,7 @@ export default function StatFilter({onStatChangeChild}: any) {
                     {
                         stats.map((stat: any, index: number) => {
                             return (
-                                <div className="field-radiobutton">
+                                <div key={index} className="field-radiobutton">
                                     <RadioButton inputId={"stat" + index} name="stat" value={stat.name}
                                                  onChange={(e) => onStatChange(e)}
                                                  checked={selectedStat === stat.name}/>
