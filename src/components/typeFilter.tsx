@@ -48,7 +48,7 @@ export default function TypeFilter({onTypeChangeChild}: any) {
                 <div className="types-container">
                     {types.map((type: any, index: number) => {
                             return (
-                                <div className="field-checkbox">
+                                <div key={index} className="field-checkbox">
                                     <Checkbox inputId={"type" + index} value={type.name} onChange={onTypeChange}
                                               checked={selectedTypes.includes(type.name)}></Checkbox>
                                     <label htmlFor={"type" + index} className="p-checkbox-label">{type.name}</label>

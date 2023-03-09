@@ -78,10 +78,10 @@ export default function Types({types}: { types: any }) {
 
     return (
         <>
-            {types.map((type: any) => {
+            {types.map((type: any, key: number) => {
                 {
                     return (
-                        <div className={"pokemon-type"} style={{
+                        <div key={key} className={"pokemon-type"} style={{
                             backgroundColor: typesDetails.find((typeDetail: any) => typeDetail.name === type.name)?.color,
                             boxShadow: "0 0 20px " + typesDetails.find((typeDetail: any) => typeDetail.name === type.name)?.color
                         }}>
