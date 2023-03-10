@@ -16,9 +16,6 @@ const pokemonApi = new PokemonApi();
 const listPokemonNames = await pokemonApi.getPokemonNames();
 
 
-//const listPokemon = await pokemonApi.getAllPokemon();
-
-
 export default function Detail() {
     const [pokemon, setPokemon] = useState("Select a Pokemon");
     const [display, setDisplay] = useState(false);
@@ -29,7 +26,6 @@ export default function Detail() {
         if (pokemonName == undefined) {
             return "Select a Pokemon";
         }
-        //if pokemonName is number return item in listPokemonNames using index
         if (!isNaN(pokemonName)) {
             return listPokemonNames[pokemonName - 1];
         }      
@@ -40,7 +36,6 @@ export default function Detail() {
     }
     
     if ( getPokemonName() !== pokemon) {
-        console.log(pokemon)
         setPokemon(getPokemonName());
     }
 
@@ -74,12 +69,20 @@ export default function Detail() {
     const displayPokemon = pokemonDetail !== undefined ? 'block' : 'none'
 
     let navigate = useNavigate();
-    const routeChange = (e: any) => {
-        const pokemonName = e.value[0].name
+    const routeChange = (pokemonName: String) => {
         let path = `/detail/${pokemonName}`;
         setDisplay(false)
         navigate(path);
     }
+
+        // Constant that contains the template for the listbox
+        const pokemonTemplate = (option: any) => {
+            return (
+                <div className="p-clearfix">
+                    <div style={{fontSize: '18px', margin: '10px 10px 0 0'}}>{option}</div>
+                </div>
+            );
+        };
 
     return (
         <div className='details'>
@@ -91,12 +94,12 @@ export default function Detail() {
                         className="pi pi-angle-down"></i></h1>
                 </Button>
                 <ListBox className='list' value={null} options={listPokemonNames}
-                         onChange={(e) => {
-                             setPokemon(e.value[0].name)
-                             routeChange(e)
+                         onChange={(pokemon) => {
+                             routeChange(pokemon.value[0])
                          }}
                          multiple filter optionLabel="name"
                          style={{width: '15rem', display: displayListBox}}
+                        itemTemplate={pokemonTemplate} 
                          listStyle={{maxHeight: '250px'}}/>
             </div>
             {pokemonDetail &&
