@@ -13,7 +13,10 @@ import PokemonApi from '../services/pokemon-api';
 
 const pokemonApi = new PokemonApi();
 
-const listPokemon = await pokemonApi.getAllPokemon();
+const listPokemonNames = await pokemonApi.getPokemonNames();
+
+
+//const listPokemon = await pokemonApi.getAllPokemon();
 
 
 export default function Detail() {
@@ -23,21 +26,33 @@ export default function Detail() {
 
     const getPokemonName = () => {
         const pokemonName: any = window.location.pathname.split('/')[2];
-        const pokemon = listPokemon.find((pokemon: PokemonDex) => {
-            return pokemonName == pokemon.id || pokemonName == pokemon.name;
+        if (pokemonName == undefined) {
+            return "Select a Pokemon";
+        }
+        //if pokemonName is number return item in listPokemonNames using index
+        if (!isNaN(pokemonName)) {
+            return listPokemonNames[pokemonName - 1];
+        }      
+        const pokemon = listPokemonNames.find((pokemon: PokemonDex) => {
+            return pokemonName == pokemon;
         });
-        return pokemon?.name;
+        return pokemon;
     }
-
-    if (pokemon == "Select a Pokemon" ||  getPokemonName() !== pokemon) {
+    
+    if ( getPokemonName() !== pokemon) {
+        console.log(pokemon)
         setPokemon(getPokemonName());
     }
 
-
     useEffect(() => {
-        pokemonApi.getPokemon()
+        setPokemon(getPokemonName());
+        if (getPokemonName() == 'Select a Pokemon') {
+            setPokemonDetail(undefined);
+            return;
+        }
+        pokemonApi.getPokemonByName(getPokemonName())
             .then((data) => {
-                setPokemonDetail(data.find((pokemon: { name: any; }) => pokemon.name == getPokemonName()))
+                setPokemonDetail(data)
             })
             .catch(() => {
                 console.log('Error occured when fetching pokemon data');
@@ -55,7 +70,7 @@ export default function Detail() {
         return info;
     }
 
-    const displayListBox = display || pokemon == 'Select a Pokemon' ? 'block' : 'none'
+    const displayListBox = display ? 'block' : 'none'
     const displayPokemon = pokemonDetail !== undefined ? 'block' : 'none'
 
     let navigate = useNavigate();
@@ -75,7 +90,7 @@ export default function Detail() {
                     <h1 className='pokemonName'>{pokemon} <i
                         className="pi pi-angle-down"></i></h1>
                 </Button>
-                <ListBox className='list' value={null} options={listPokemon}
+                <ListBox className='list' value={null} options={listPokemonNames}
                          onChange={(e) => {
                              setPokemon(e.value[0].name)
                              routeChange(e)
