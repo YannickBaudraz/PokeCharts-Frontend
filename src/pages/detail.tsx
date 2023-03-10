@@ -27,7 +27,8 @@ export default function Detail() {
             return "Select a Pokemon";
         }
         if (!isNaN(pokemonName)) {
-            return listPokemonNames[pokemonName - 1];
+
+            return listPokemonNames[pokemonName - 1] || "Select a Pokemon";
         }      
         const pokemon = listPokemonNames.find((pokemon: PokemonDex) => {
             return pokemonName == pokemon;
@@ -41,7 +42,7 @@ export default function Detail() {
 
     useEffect(() => {
         setPokemon(getPokemonName());
-        if (getPokemonName() == 'Select a Pokemon') {
+        if (getPokemonName() == 'Select a Pokemon' || getPokemonName() == undefined) {
             setPokemonDetail(undefined);
             return;
         }
@@ -75,14 +76,14 @@ export default function Detail() {
         navigate(path);
     }
 
-        // Constant that contains the template for the listbox
-        const pokemonTemplate = (option: any) => {
-            return (
-                <div className="p-clearfix">
-                    <div style={{fontSize: '18px', margin: '10px 10px 0 0'}}>{option}</div>
-                </div>
-            );
-        };
+    // Constant that contains the template for the listbox
+    const pokemonTemplate = (option: any) => {
+        return (
+            <div className="p-clearfix">
+                <div style={{fontSize: '18px', margin: '10px 10px 0 0'}}>{option}</div>
+            </div>
+        );
+    };
 
     return (
         <div className='details'>
@@ -90,7 +91,7 @@ export default function Detail() {
                 <Button
                     onClick={() => setDisplay(!display)}
                     className="pokemonTitle p-button-text p-button-plain p-button-lg">
-                    <h1 className='pokemonName'>{pokemon} <i
+                    <h1 className='pokemonName'>{pokemon || 'Select a Pokemon'} <i
                         className="pi pi-angle-down"></i></h1>
                 </Button>
                 <ListBox className='list' value={null} options={listPokemonNames}
