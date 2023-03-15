@@ -35,6 +35,7 @@ export default function Search() {
 
     // Function that is called when the stat filter is changed
     const onStatChange = (stat: any) => {
+        switchFilter ? sortByStat(filteredPokemon, stat) : sortByDefault();
         setSelectedStat(stat);
     }
 
