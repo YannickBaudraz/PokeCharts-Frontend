@@ -52,7 +52,12 @@ export default class PokemonApi {
      * @param conditionValue: Contains the value of the condition
      */
     public async getPokemonByFilters(types: [], stat: any, conditions: [], conditionValue: any) {
-        const url = import.meta.env.VITE_BACKEND_URL + 'Pokemons/Filter?types=' + types.toString().toLowerCase() + '&stat=' + stat.toLowerCase() + '&conditions=' + conditions + '&conditionValue=' + conditionValue;
+        const baseUrl = import.meta.env.VITE_BACKEND_URL + 'Pokemons/Filter?';
+        const typesUrl = 'types=' + types.toString().toLowerCase();
+        const statUrl = '&stat=' + stat.toLowerCase();
+        const conditionsUrl = conditions !== null ? '&conditions=' + conditions + '&conditionValue=' + conditionValue : '';
+        const url = baseUrl + typesUrl + statUrl + conditionsUrl;
+
         return fetch(url)
             .then((response) => response.json())
             .then((data) => {
