@@ -54,7 +54,7 @@ export default function Search() {
         datasets: [
             {
                 label: selectedStat,
-                data: filteredPokemon.map((pokemon: any) => selectedType === "Health" ? pokemon.stats.hp : selectedType === "Attack" ? pokemon.stats.attack : selectedType === "Defense" ? pokemon.stats.defense : selectedType === "Speed" ? pokemon.stats.speed : selectedType === "Special Attack" ? pokemon.stats.specialAttack : pokemon.stats.specialDefense),
+                data: filteredPokemon.map((pokemon: any) => selectedStat === "Health" ? pokemon.stats.hp : selectedStat === "Attack" ? pokemon.stats.attack : selectedStat === "Defense" ? pokemon.stats.defense : selectedStat === "Speed" ? pokemon.stats.speed : selectedStat === "Special Attack" ? pokemon.stats.specialAttack : pokemon.stats.specialDefense),
                 fill: false,
                 backgroundColor: '#6366f1',
             }
