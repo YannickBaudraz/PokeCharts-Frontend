@@ -113,7 +113,7 @@ export default function Detail() {
                     </div>
                     <h2 className='title'>Moves pool</h2>
                     <div className="pokemonMoves">
-                       <PokemonMove />
+                       <PokemonMove pokemonId={getPokemonInfo().id} />
                     </div>
                 </div>
             }

@@ -4,15 +4,15 @@ import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import PokemonApi from "../../services/pokemon-api";
 
-export default function PokemonMove() {
+export default function PokemonMove( {pokemonId}: {pokemonId: number}) {
     const [moves, setMoves] = useState<Move[]>([]);
 
     useEffect(() => {
         const pokemonApi = new PokemonApi();
-        pokemonApi.getPokemonMoves().then((data) => {
+        pokemonApi.getPokemonMoves(pokemonId).then((data) => {
             setMoves(data);
         });
-    }, []);
+    }, [pokemonId]);
 
     return (
         <div className="card">

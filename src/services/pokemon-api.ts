@@ -68,8 +68,8 @@ export default class PokemonApi {
             });
     }
 
-    public async getPokemonMoves() {
-        return fetch('/src/data/moves.json')
+    public async getPokemonMoves(pokemonId: number) {
+        return fetch(import.meta.env.VITE_BACKEND_URL + 'PokemonMoves/' + pokemonId)
             .then((response) => response.json())
             .then((data) => {
                 return data;
