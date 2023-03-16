@@ -4,7 +4,7 @@ import {DataTable} from "primereact/datatable";
 import {Column} from "primereact/column";
 import PokemonApi from "../../services/pokemon-api";
 
-export default function PokemonMove( {pokemonId}: {pokemonId: number}) {
+export default function DisplayMove({pokemonId}: {pokemonId: number}) {
     const [moves, setMoves] = useState<Move[]>([]);
 
     useEffect(() => {

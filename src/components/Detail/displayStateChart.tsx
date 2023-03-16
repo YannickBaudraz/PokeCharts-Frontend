@@ -7,7 +7,7 @@ interface PokemonStateChartProps {
     pokemonStats: PokemonStats
 }
 
-export default function PokemonStateChart( {pokemonStats}: PokemonStateChartProps) {
+export default function DisplayStateChart({pokemonStats}: PokemonStateChartProps) {
      //data for chart
     const statLabel =  Object.keys(pokemonStats)
     const statData =  Object.values(pokemonStats)

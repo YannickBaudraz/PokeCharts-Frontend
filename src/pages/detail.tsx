@@ -4,13 +4,13 @@ import {Button} from 'primereact/button';
 import {ListBox} from 'primereact/listbox';
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import PokemonImage from '../components/Detail/PokemonImage';
-import PokemonStateChart from '../components/Detail/PokemonStateChart';
-import PokemonStateInfo from '../components/Detail/PokemonStateInfo';
+import DisplayImage from '../components/Detail/displayImage';
+import DisplayStateChart from '../components/Detail/displayStateChart';
+import DisplayStateInfo from '../components/Detail/displayStateInfo';
 import Pokemon from '../models/Pokemon';
 import PokemonDex from '../models/PokemonDex';
 import PokemonApi from '../services/pokemon-api';
-import PokemonMove from "../components/Detail/PokemonMove";
+import DisplayMove from "../components/Detail/displayMove";
 
 const pokemonApi = new PokemonApi();
 
@@ -107,13 +107,13 @@ export default function Detail() {
             {pokemonDetail &&
                 <div className="pokemonDetail" style={{display: displayPokemon}}>
                     <div className="pokemonInfo">
-                        <PokemonStateInfo pokemon={getPokemonInfo()}/>
-                        <PokemonImage pokemon={getPokemonInfo()}/>
-                        <PokemonStateChart pokemonStats={pokemonDetail.stats}/>
+                        <DisplayStateInfo pokemon={getPokemonInfo()}/>
+                        <DisplayImage pokemon={getPokemonInfo()}/>
+                        <DisplayStateChart pokemonStats={pokemonDetail.stats}/>
                     </div>
                     <h2 className='title'>Moves pool</h2>
                     <div className="pokemonMoves">
-                       <PokemonMove pokemonId={getPokemonInfo().id} />
+                       <DisplayMove pokemonId={getPokemonInfo().id} />
                     </div>
                 </div>
             }

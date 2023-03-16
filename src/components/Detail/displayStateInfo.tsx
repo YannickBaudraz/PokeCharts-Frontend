@@ -4,7 +4,7 @@ interface PokemonStateInfoProps {
     pokemon:Pokemon
 }
 
-export default function PokemonStateInfo( {pokemon}:PokemonStateInfoProps) {
+export default function DisplayStateInfo({pokemon}:PokemonStateInfoProps) {
     
     const getHeight = `${(pokemon.height)/10} m`
     const getWeight = `${(pokemon.weight)/10} kg`

@@ -1,11 +1,11 @@
 import { Image } from 'primereact/image';
 import Pokemon from '../../models/Pokemon';
 
-interface PokemonImageProps {
+interface ImageProps {
     pokemon:Pokemon
 }
 
-export default function PokemonImage( {pokemon}:PokemonImageProps) {
+export default function DisplayImage({pokemon}:ImageProps) {
     const pokemonImage = () => {
         if (pokemon.id) {
             return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
