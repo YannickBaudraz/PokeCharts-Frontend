@@ -56,3 +56,15 @@
 th{
     text-align: center;
 }
+.pokemonMoves{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    font-size: 30px;
+}
+.title{
+    text-align: center;
+}

@@ -111,10 +111,10 @@ export default function Detail() {
                         <PokemonImage pokemon={getPokemonInfo()}/>
                         <PokemonStateChart pokemonStats={pokemonDetail.stats}/>
                     </div>
+                    <h2 className='title'>Moves pool</h2>
                     <div className="pokemonMoves">
-                        <h2>Moves pool</h2>
                        <PokemonMove />
-                        </div>
+                    </div>
                 </div>
             }
         </div>

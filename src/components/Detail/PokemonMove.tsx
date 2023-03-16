@@ -16,7 +16,7 @@ export default function PokemonMove() {
 
     return (
         <div className="card">
-            <DataTable value={moves} tableStyle={{ minWidth: '50rem' }}>
+            <DataTable value={moves}  sortMode="multiple"  tableStyle={{ minWidth: '50rem' }}>
                 <Column field="name" header="Name" sortable style={{ width: '25%' }}></Column>
                 <Column field="power" header="Base stat" sortable style={{ width: '25%' }}></Column>
                 <Column field="category" header="Category" sortable style={{ width: '25%' }}></Column>
