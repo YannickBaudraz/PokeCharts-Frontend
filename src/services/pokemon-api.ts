@@ -72,7 +72,15 @@ export default class PokemonApi {
         return fetch(import.meta.env.VITE_BACKEND_URL + 'PokemonMoves/' + pokemonId)
             .then((response) => response.json())
             .then((data) => {
-                return data;
+                return data.map((move: any) => {
+                    return {
+                        id: move.id,
+                        name: move.name,
+                        power: move.power,
+                        moveCategory: move.category == '1' ? 'physical' : move.category == '2' ? 'special' : 'status',
+                        type: move.type
+                    }
+                });
             })
             .catch((error) => {
                 console.error('Error:', error);
