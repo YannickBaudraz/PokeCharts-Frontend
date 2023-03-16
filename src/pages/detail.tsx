@@ -10,6 +10,7 @@ import PokemonStateInfo from '../components/Detail/PokemonStateInfo';
 import Pokemon from '../models/Pokemon';
 import PokemonDex from '../models/PokemonDex';
 import PokemonApi from '../services/pokemon-api';
+import PokemonMove from "../components/Detail/PokemonMove";
 
 const pokemonApi = new PokemonApi();
 
@@ -110,6 +111,10 @@ export default function Detail() {
                         <PokemonImage pokemon={getPokemonInfo()}/>
                         <PokemonStateChart pokemonStats={pokemonDetail.stats}/>
                     </div>
+                    <div className="pokemonMoves">
+                        <h2>Moves pool</h2>
+                       <PokemonMove />
+                        </div>
                 </div>
             }
         </div>

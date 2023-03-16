@@ -67,4 +67,15 @@ export default class PokemonApi {
                 console.error('Error:', error);
             });
     }
+
+    public async getPokemonMoves() {
+        return fetch('/src/data/moves.json')
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 }
