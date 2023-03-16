@@ -16,7 +16,6 @@ const pokemonApi = new PokemonApi();
 
 const listPokemonNames = await pokemonApi.getPokemonNames();
 
-
 export default function Detail() {
     const [pokemon, setPokemon] = useState("Select a Pokemon");
     const [display, setDisplay] = useState(false);
@@ -24,17 +23,12 @@ export default function Detail() {
 
     const getPokemonName = () => {
         const pokemonName: any = window.location.pathname.split('/')[2];
-        if (pokemonName == undefined) {
-            return "Select a Pokemon";
-        }
-        if (!isNaN(pokemonName)) {
+        if (pokemonName == undefined) return "Select a Pokemon";
+        if (!isNaN(pokemonName)) return listPokemonNames[pokemonName - 1] || "Select a Pokemon";
 
-            return listPokemonNames[pokemonName - 1] || "Select a Pokemon";
-        }      
-        const pokemon = listPokemonNames.find((pokemon: PokemonDex) => {
+        return listPokemonNames.find((pokemon: PokemonDex) => {
             return pokemonName == pokemon;
         });
-        return pokemon;
     }
     
     if ( getPokemonName() !== pokemon) {
@@ -76,8 +70,6 @@ export default function Detail() {
         setDisplay(false)
         navigate(path);
     }
-
-    // Constant that contains the template for the listbox
     const pokemonTemplate = (option: any) => {
         return (
             <div className="p-clearfix">

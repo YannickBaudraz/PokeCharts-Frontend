@@ -15,8 +15,8 @@ export default function DisplayMove({pokemonId}: {pokemonId: number}) {
     }, [pokemonId]);
 
     return (
-        <div className="card">
-            <DataTable value={moves} sortMode="multiple" paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]}  tableStyle={{ minWidth: '50rem' }}>
+        <div className="move">
+            <DataTable value={moves} sortMode="multiple" paginator rows={10} rowsPerPageOptions={[5, 10, 25, 50]} >
                 <Column field="name" header="Name" sortable style={{ width: '25%' }}></Column>
                 <Column field="power" header="Base stat" sortable style={{ width: '25%' }}></Column>
                 <Column field="moveCategory" header="Category" sortable style={{ width: '25%' }}></Column>
