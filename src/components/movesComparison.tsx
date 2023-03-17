@@ -3,7 +3,9 @@ import {useEffect, useState} from "react";
 import {Button} from "primereact/button";
 import {ListBox} from "primereact/listbox";
 import {Chart} from "primereact/chart";
+import PokemonApi from "../services/pokemon-api";
 
+const pokemonApi = new PokemonApi();
 export default function MovesComparison({selectedPokemon}: { selectedPokemon: any }) {
     // Constant that the selected move in the dropdown
     const [selectedMove, setSelectedMove] = useState<any>([]);
@@ -74,13 +76,10 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
 
     // Get the moves of the selected pokemon
     useEffect(() => {
-        fetch('/src/assets/dataExampleMoves.json')
-            .then((response) => response.json())
-            .then((data) => {
-                // Filter the data list by the id of the pokemon
-                setMoves(data.filter((move: any) => move.id === selectedPokemon[0].id)[0].moves);
-                setLoadingMoves(false);
-            });
+        pokemonApi.getPokemonMoves(selectedPokemon[0].id).then((data: any) => {
+            setMoves(data);
+            setLoadingMoves(false);
+        });
     }, [selectedPokemon]);
 
     function onChangeMove(newMoveList: any) {
