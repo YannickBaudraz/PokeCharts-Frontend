@@ -58,15 +58,18 @@ export default function Search() {
             {
                 label: selectedStat,
                 data: filteredPokemon.map((pokemon: any) => selectedStat === "Health" ? pokemon.stats.hp : selectedStat === "Attack" ? pokemon.stats.attack : selectedStat === "Defense" ? pokemon.stats.defense : selectedStat === "Speed" ? pokemon.stats.speed : selectedStat === "Special Attack" ? pokemon.stats.specialAttack : pokemon.stats.specialDefense),
-                fill: false,
-                backgroundColor: '#6366f1',
-            }
+                backgroundColor: '#4f46e5',
+                barThickness: 30,
+                barPercentage: 1,
+            },
         ],
     };
 
     // Constant that contains the options for the chart
     let basicOptions = {
         indexAxis: 'y',
+        maintainAspectRatio: false,
+        responsive: true,
         plugins: {
             legend: {
                 labels: {
@@ -75,22 +78,19 @@ export default function Search() {
             }
         },
         scales: {
-            x: {
+            yAxes: [
+                {
                 ticks: {
-                    color: '#495057'
+                        beginAtZero: true,
+                        precision: 0,
                 },
-                grid: {
-                    color: '#ebedef'
-                }
             },
-            y: {
-                ticks: {
-                    color: '#495057'
+            ],
+            xAxes: [
+                {
+                    categoryPercentage: 0.5,
                 },
-                grid: {
-                    color: '#ebedef'
-                }
-            }
+            ],
         },
     };
 
@@ -184,7 +184,7 @@ export default function Search() {
                                 return <Card key={index} pokemon={pokemon}/>
                             })}
                         </div> :
-                        <div className="chart-container">
+                        <div className="chart-container" style={{height: (filteredPokemon.length * 50) + 50, minHeight: "100px"}}>
                             {filteredPokemon.length !== 0 &&
                                 <Chart type="bar" data={basicData} options={basicOptions}/>}
                         </div>
