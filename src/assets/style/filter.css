@@ -66,6 +66,15 @@
     color: black;
 }
 
+.chart-container {
+    width: 100%;
+}
+
+.chart-container .p-chart{
+    width: 100%;
+    height: inherit;
+}
+
 .content-container {
     text-align: center;
 }

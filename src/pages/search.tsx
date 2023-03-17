@@ -16,7 +16,9 @@ export default function Search() {
     // Array that will contain every pokemon filtered
     const [filteredPokemon, setFilteredPokemon] = useState<any>([]);
     // Boolean to check if the data is loading
-    const [loadingPokemon, setLoadingPokemon] = useState<boolean>(true);
+    const [loadingPokemon, setLoadingPokemon] = useState<boolean>(false);
+    // Boolean to check if the page is waiting
+    const [waiting, setWaiting] = useState<boolean>(true);
     // Boolean to switch between the chart and the table
     const [switchFilter, setSwitchFilter] = useState<boolean>(false);
     // Constant that contains the selected types
@@ -35,6 +37,7 @@ export default function Search() {
 
     // Function that is called when the stat filter is changed
     const onStatChange = (stat: any) => {
+        switchFilter ? sortByStat(filteredPokemon, stat) : sortByDefault();
         setSelectedStat(stat);
     }
 
@@ -54,16 +57,19 @@ export default function Search() {
         datasets: [
             {
                 label: selectedStat,
-                data: filteredPokemon.map((pokemon: any) => selectedType === "Health" ? pokemon.stats.hp : selectedType === "Attack" ? pokemon.stats.attack : selectedType === "Defense" ? pokemon.stats.defense : selectedType === "Speed" ? pokemon.stats.speed : selectedType === "Special Attack" ? pokemon.stats.specialAttack : pokemon.stats.specialDefense),
-                fill: false,
-                backgroundColor: '#6366f1',
-            }
+                data: filteredPokemon.map((pokemon: any) => selectedStat === "Health" ? pokemon.stats.hp : selectedStat === "Attack" ? pokemon.stats.attack : selectedStat === "Defense" ? pokemon.stats.defense : selectedStat === "Speed" ? pokemon.stats.speed : selectedStat === "Special Attack" ? pokemon.stats.specialAttack : pokemon.stats.specialDefense),
+                backgroundColor: '#4f46e5',
+                barThickness: 30,
+                barPercentage: 1,
+            },
         ],
     };
 
     // Constant that contains the options for the chart
     let basicOptions = {
         indexAxis: 'y',
+        maintainAspectRatio: false,
+        responsive: true,
         plugins: {
             legend: {
                 labels: {
@@ -72,26 +78,25 @@ export default function Search() {
             }
         },
         scales: {
-            x: {
+            yAxes: [
+                {
                 ticks: {
-                    color: '#495057'
+                        beginAtZero: true,
+                        precision: 0,
                 },
-                grid: {
-                    color: '#ebedef'
-                }
             },
-            y: {
-                ticks: {
-                    color: '#495057'
+            ],
+            xAxes: [
+                {
+                    categoryPercentage: 0.5,
                 },
-                grid: {
-                    color: '#ebedef'
-                }
-            }
+            ],
         },
     };
 
     function submitFilters() {
+        setWaiting(false);
+        setLoadingPokemon(true);
         let filters = {
             types: selectedType,
             stat: selectedStat,
@@ -104,13 +109,54 @@ export default function Search() {
         }
 
         if (selectedType !== null) {
-        pokemonApi.getPokemonByFilters(selectedType, selectedStat, selectedConditions, filters.conditionValue).then((data: any) => {
-            setFilteredPokemon(data);
-            setLoadingPokemon(false);
-        });
+            pokemonApi.getPokemonByFilters(selectedType, selectedStat, selectedConditions, filters.conditionValue).then((data: any) => {
+                switchFilter ? sortByStat(data, selectedStat) : sortByDefault();
+                setFilteredPokemon(data);
+                setLoadingPokemon(false);
+            });
         } else {
+            setWaiting(true);
+            setLoadingPokemon(false);
             setFilteredPokemon([]);
         }
+    }
+
+    function sortByStat(data: any, stat: any) {
+        data.sort((a: any, b: any) => {
+            switch (stat) {
+                case "Health":
+                    return b.stats.hp - a.stats.hp;
+                case "Attack":
+                    return b.stats.attack - a.stats.attack;
+                case "Defense":
+                    return b.stats.defense - a.stats.defense;
+                case "Speed":
+                    return b.stats.speed - a.stats.speed;
+                case "Special Attack":
+                    return b.stats.specialAttack - a.stats.specialAttack;
+                case "Special Defense":
+                    return b.stats.specialDefense - a.stats.specialDefense;
+                default:
+                    return b.stats.hp - a.stats.hp;
+            }
+        });
+    }
+
+    function sortByDefault() {
+        filteredPokemon.sort((a: any, b: any) => {
+            return a.id - b.id;
+        });
+    }
+
+    function onChangeSwitch(e: any) {
+        if (e.value) {
+            // Sort the pokemon by the selected stat
+            sortByStat(filteredPokemon, selectedStat);
+        } else {
+            // Sort the pokemon by the default order
+            sortByDefault();
+        }
+        setSwitchFilter(e.value);
     }
 
     return (
@@ -123,12 +169,13 @@ export default function Search() {
                 <Button label="Filter" onClick={submitFilters}/>
             </div>
             <div className={"switch-container"}>
-                <InputSwitch checked={switchFilter} onChange={(e) => setSwitchFilter(e.value)}/>
+                <InputSwitch checked={switchFilter} onChange={(e) => onChangeSwitch(e)}/>
                 <p>Switch to {switchFilter ? "Table" : "Chart"}</p>
             </div>
 
-            {loadingPokemon && <h1>Apply filters to get the needed Pokemon.</h1>}
-            {!loadingPokemon &&
+            {waiting && <h1>Apply filters to get the needed Pokemon.</h1>}
+            {loadingPokemon && !waiting && <h1>Loading...</h1>}
+            {!loadingPokemon && !waiting &&
                 <div className="content-container">
                     {filteredPokemon.length === 0 && selectedType !== null && <h1>No pokemon found of this type.</h1>}
                     {!switchFilter ?
@@ -137,7 +184,7 @@ export default function Search() {
                                 return <Card key={index} pokemon={pokemon}/>
                             })}
                         </div> :
-                        <div className="chart-container">
+                        <div className="chart-container" style={{height: (filteredPokemon.length * 50) + 50, minHeight: "100px"}}>
                             {filteredPokemon.length !== 0 &&
                                 <Chart type="bar" data={basicData} options={basicOptions}/>}
                         </div>
