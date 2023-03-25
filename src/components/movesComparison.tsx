@@ -77,19 +77,24 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
     // Get the moves of the selected pokemon
     useEffect(() => {
         pokemonApi.getPokemonMoves(selectedPokemon[0].id).then((data: any) => {
-            setMoves(data);
+            setMoves(data.filter((move: any) => move.power !== 0));
             setLoadingMoves(false);
         });
+        //reset the selected move
+        setSelectedMove([]);
+        setDamages([]);
     }, [selectedPokemon]);
 
     function onChangeMove(newMoveList: any) {
-
         // If the selected move is null, set the new move
         if (selectedMove.length === 0) {
             setSelectedMove(newMoveList);
             //TODO: Fetch the data of the damages
-            console.log([{move: newMoveList[0], value: 10}])
-            setDamages([{move: newMoveList[0], value: 10}]);
+            pokemonApi.attackPokemon(selectedPokemon[0].id, selectedPokemon[1].id, newMoveList[0].id).then(r => {
+                setDamages([{move: newMoveList[0], value: r[0], effect: r[1]}]);
+                console.log(r);
+            });
+
             return;
         }
 
