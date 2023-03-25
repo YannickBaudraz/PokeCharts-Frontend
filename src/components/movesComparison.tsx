@@ -110,8 +110,9 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
             return;
         }
 
-        //TODO: Fetch the data of the damages for the new move
-        setDamages([...damages, {move: newMove, value: 10}]);
+        pokemonApi.attackPokemon(selectedPokemon[0].id, selectedPokemon[1].id, newMove.id).then(r => {
+            setDamages([...damages, {move: newMove, value: r[0], effect: r[1]}]);
+        });
         setSelectedMove(newMoveList);
     }
 
@@ -120,13 +121,21 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
             {loadingMoves && <p>Loading moves...</p>}
             {!loadingMoves &&
                 <div className={"input-container"}>
-                    <ListBox value={selectedMove} options={moves}
-                             onChange={(e) => onChangeMove(e.value)} filter optionLabel="name"
-                             itemTemplate={moveTemplate} style={{width: '15rem'}}
-                             listStyle={{maxHeight: '150px'}}
-                             multiple
-                    />
+                    <DataTable value={moves} paginator rows={10} dataKey={"id"} loading={loadingMoves}
+                               emptyMessage={"No moves found."} selectionMode={"single"} selection={selectedMove}
+                               onSelectionChange={(e) => onChangeMove(e.value)}>
+                        <Column selectionMode={"multiple"} headerStyle={{width: '3rem'}}/>
+                        <Column field={"name"} header={"Name"} sortable/>
+                        <Column field={"power"} header={"Power"} sortable/>
+                        <Column field={"moveCategory"} header={"Category"} sortable/>
+                        <Column field={"type.name"} header={"Type"} sortable/>
+                    </DataTable>
+                    {damages.length === 0 &&
+                        <p>Select a move to see the damages inflicted</p>
+                    }
+                    {damages.length > 0 &&
                     <Chart type="bar" data={barData} options={barOptions}/>
+                    }
                 </div>
             }
         </>
