@@ -1,7 +1,4 @@
-.input-container {
-    display: flex;
-    width: 100%;
-    padding: 0 8%;
-    justify-content: space-between;
-    margin: 20px 0;
+.p-datatable-thead > tr > th:nth-child(1) > .p-column-header-content {
+    display:none;
 }
+
