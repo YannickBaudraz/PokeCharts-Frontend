@@ -1,3 +1,5 @@
+import PokemonLight from '../models/PokemonLight';
+
 export default class PokemonApi {
 
     /**
@@ -34,10 +36,10 @@ export default class PokemonApi {
      * This method get all the Pokémon names
      */
     public async getPokemonNames() {
-        return fetch(import.meta.env.VITE_BACKEND_URL + 'Pokemons/Names')
-            .then((response) => response.json())
+        return fetch(import.meta.env.VITE_BACKEND_URL + 'Pokemons?light=true')
+            .then((response) => response.json() as Promise<PokemonLight[]>)
             .then((data) => {
-                return data;
+                return data.map((p) => p.name);
             })
             .catch((error) => {
                 console.error('Error:', error);
