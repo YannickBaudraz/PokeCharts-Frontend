@@ -4,6 +4,9 @@ import {Button} from "primereact/button";
 import {ListBox} from "primereact/listbox";
 import {Chart} from "primereact/chart";
 import PokemonApi from "../services/pokemon-api";
+import {DataTable} from "primereact/datatable";
+import {Column} from "primereact/column";
+import "../assets/style/movesComparison.css";
 
 const pokemonApi = new PokemonApi();
 export default function MovesComparison({selectedPokemon}: { selectedPokemon: any }) {
@@ -13,6 +16,8 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
     const [damages, setDamages] = useState<any>([]);
     // Boolean to check if the data is loading
     const [loadingMoves, setLoadingMoves] = useState<boolean>(true);
+    // Boolean to check if the damages is loading
+    const [loadingDamages, setLoadingDamages] = useState<boolean>(false);
     // Constant that contains all moves of the selected pokemon
     const [moves, setMoves] = useState<any>([]);
     // Constant that contains the template of the dropdown
@@ -55,22 +60,38 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
             }
         }
     });
+
+    const effectColor = (effect: any) => {
+        switch (effect) {
+            case 4:
+                return 'rgb(179,164,61)';
+            case 2:
+                return 'rgb(0, 172, 0, 0.2)';
+            case 1:
+                return 'rgb(255,99,132,0.2)';
+            case 0.5:
+                return 'rgba(116,115,115,0.2)';
+            case 0.25:
+                return 'rgba(60,60,60,0.2)';
+            case 0:
+                return 'rgb(0,0,0)';
+            default:
+                return 'rgb(0,0,0)';
+        }
+    }
+
+
     // Constant that contains the data of the chart
     const barData = ({
         labels: damages.map((damage: any) => damage.move.name),
         datasets: [
             {
-                label: "Damage inflicted",
+                label: 'Damage',
                 data: damages.map((damage: any) => damage.value),
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                borderColor: 'rgba(255,99,132,1)',
+                backgroundColor: damages.map((damage: any) => effectColor(damage.effect)),
+                borderColor: damages.map((damage: any) => effectColor(damage.effect)),
                 borderWidth: 1,
-                pointBackgroundColor: 'rgba(255,99,132,1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(255,99,132,1)'
-
-            }
+            },
         ],
     });
 
@@ -85,35 +106,46 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
         setDamages([]);
     }, [selectedPokemon]);
 
-    function onChangeMove(newMoveList: any) {
+    function onChangeMove(newMovesList: any) {
+        if (newMovesList.length === 0) {
+            setSelectedMove([]);
+            setDamages([]);
+            setLoadingDamages(false);
+            return;
+        }
+
         // If the selected move is null, set the new move
         if (selectedMove.length === 0) {
-            setSelectedMove(newMoveList);
-            //TODO: Fetch the data of the damages
-            pokemonApi.attackPokemon(selectedPokemon[0].id, selectedPokemon[1].id, newMoveList[0].id).then(r => {
-                setDamages([{move: newMoveList[0], value: r[0], effect: r[1]}]);
-                console.log(r);
+            setSelectedMove(newMovesList);
+            pokemonApi.attackPokemon(selectedPokemon[0].id, selectedPokemon[1].id, newMovesList[0].id).then(r => {
+                setDamages([{move: newMovesList[0], value: r[0], effect: r[1]}]);
             });
-
+            setLoadingDamages(false);
             return;
         }
 
         // If the selected move is not null, make a comparison between the old and the new moves
         let oldMoveList = [...selectedMove];
-        let newMove = newMoveList.filter((move: any) => !oldMoveList.includes(move))[0];
+        let newMoves = newMovesList.filter((move: any) => !oldMoveList.includes(move))[0];
         // If the new move is undefined, a move is removed from the list
-        if (newMove === undefined) {
-            setSelectedMove(newMoveList);
-            //TODO: Remove the data of the damages for the removed move
-            //Remove the damage where the selected move were
-            setDamages(damages.filter((damage: any) => damage.move !== oldMoveList.filter((move: any) => !newMoveList.includes(move))[0]));
+        if (newMoves === undefined) {
+            let oldMove = oldMoveList.filter((move: any) => !newMovesList.includes(move))[0];
+            let newDamages = damages.filter((damage: any) => damage.move.id !== oldMove.id);
+            setDamages(newDamages);
+            setSelectedMove(newMovesList);
+            setLoadingDamages(false);
             return;
         }
 
-        pokemonApi.attackPokemon(selectedPokemon[0].id, selectedPokemon[1].id, newMove.id).then(r => {
-            setDamages([...damages, {move: newMove, value: r[0], effect: r[1]}]);
-        });
-        setSelectedMove(newMoveList);
+        // If the new move is not undefined, a move is added to the list
+        if (newMoves.length !== 0) {
+            setSelectedMove(newMovesList);
+            pokemonApi.attackPokemon(selectedPokemon[0].id, selectedPokemon[1].id, newMoves.id).then(r => {
+                setDamages([...damages, {move: newMoves, value: r[0], effect: r[1]}]);
+            });
+            setLoadingDamages(false);
+            return;
+        }
     }
 
     return (
@@ -123,18 +155,20 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
                 <div className={"input-container"}>
                     <DataTable value={moves} paginator rows={10} dataKey={"id"} loading={loadingMoves}
                                emptyMessage={"No moves found."} selectionMode={"single"} selection={selectedMove}
-                               onSelectionChange={(e) => onChangeMove(e.value)}>
+                               onSelectionChange={(e) => {
+                                   setLoadingDamages(true);
+                                   onChangeMove(e.value)
+                               }}>
                         <Column selectionMode={"multiple"} headerStyle={{width: '3rem'}}/>
                         <Column field={"name"} header={"Name"} sortable/>
                         <Column field={"power"} header={"Power"} sortable/>
                         <Column field={"moveCategory"} header={"Category"} sortable/>
                         <Column field={"type.name"} header={"Type"} sortable/>
                     </DataTable>
-                    {damages.length === 0 &&
-                        <p>Select a move to see the damages inflicted</p>
-                    }
-                    {damages.length > 0 &&
-                    <Chart type="bar" data={barData} options={barOptions}/>
+                    {loadingDamages && <p>Loading damages...</p>}
+                    {damages.length === 0 && !loadingDamages && <p>Select a move to see the damages inflicted</p>}
+                    {damages.length !== 0 && !loadingDamages &&
+                        <Chart type="bar" data={barData} options={barOptions}/>
                     }
                 </div>
             }
