@@ -9,10 +9,9 @@
 .caption-item {
     font-size: 1.2rem;
     font-weight: 600;
-    margin: 0;
     padding: 0;
     text-align: center;
-    width: 100px;
+    margin: 0px 25px;
     display: flex;
 }
 
@@ -39,4 +38,8 @@
 
 .charts-container > .p-chart {
     height: 624px;
+}
+
+.charts-container {
+    text-align: center;
 }

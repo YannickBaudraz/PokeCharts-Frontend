@@ -168,24 +168,29 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
                     <div className={"charts-container"}>
                         <div className={"caption"}>
                             <div className={"caption-item"}>
-                                <p className={"caption-label"}>4x</p>
-                                <div className={"caption-color"} style={{backgroundColor: effectColor(4)}}/>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(4)}}>
+                                    <p className={"caption-label"}>4x</p>
+                                </div>
                             </div>
                             <div className={"caption-item"}>
-                                <p className={"caption-label"}>2x</p>
-                                <div className={"caption-color"} style={{backgroundColor: effectColor(2)}}/>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(2)}}>
+                                    <p className={"caption-label"}>2x</p>
+                                </div>
                             </div>
                             <div className={"caption-item"}>
-                                <p className={"caption-label"}>1x</p>
-                                <div className={"caption-color"} style={{backgroundColor: effectColor(1)}}/>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(1)}}>
+                                    <p className={"caption-label"}>1x</p>
+                                </div>
                             </div>
                             <div className={"caption-item"}>
-                                <p className={"caption-label"}>0.5x</p>
-                                <div className={"caption-color"} style={{backgroundColor: effectColor(0.5)}}/>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(0.5)}}>
+                                    <p className={"caption-label"}>0.5x</p>
+                                </div>
                             </div>
                             <div className={"caption-item"}>
-                                <p className={"caption-label"}>0.25x</p>
-                                <div className={"caption-color"} style={{backgroundColor: effectColor(0.25)}}/>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(0.25)}}>
+                                    <p className={"caption-label"}>0.25x</p>
+                                </div>
                             </div>
                         </div>
                         {loadingDamages && <p>Loading damages...</p>}
