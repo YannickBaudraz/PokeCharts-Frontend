@@ -9,16 +9,9 @@
 .caption-item {
     font-size: 1.2rem;
     font-weight: 600;
-<<<<<<< Updated upstream
     padding: 0;
     text-align: center;
     margin: 0px 25px;
-=======
-    margin: 0;
-    padding: 0;
-    text-align: center;
-    width: 100px;
->>>>>>> Stashed changes
     display: flex;
 }
 
@@ -45,11 +38,8 @@
 
 .charts-container > .p-chart {
     height: 624px;
-<<<<<<< Updated upstream
 }
 
 .charts-container {
     text-align: center;
-=======
->>>>>>> Stashed changes
 }
