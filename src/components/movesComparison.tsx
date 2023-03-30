@@ -64,15 +64,15 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
     const effectColor = (effect: any) => {
         switch (effect) {
             case 4:
-                return 'rgb(179,164,61)';
+                return 'rgba(0,172,0,0.7)';
             case 2:
                 return 'rgb(0, 172, 0, 0.2)';
             case 1:
-                return 'rgb(255,99,132,0.2)';
-            case 0.5:
                 return 'rgba(116,115,115,0.2)';
+            case 0.5:
+                return 'rgba(255,99,132,0.2)';
             case 0.25:
-                return 'rgba(60,60,60,0.2)';
+                return 'rgba(255,99,132,0.7)';
             case 0:
                 return 'rgb(0,0,0)';
             default:
@@ -165,11 +165,35 @@ export default function MovesComparison({selectedPokemon}: { selectedPokemon: an
                         <Column field={"moveCategory"} header={"Category"} sortable/>
                         <Column field={"type.name"} header={"Type"} sortable/>
                     </DataTable>
-                    {loadingDamages && <p>Loading damages...</p>}
-                    {damages.length === 0 && !loadingDamages && <p>Select a move to see the damages inflicted</p>}
-                    {damages.length !== 0 && !loadingDamages &&
-                        <Chart type="bar" data={barData} options={barOptions}/>
-                    }
+                    <div className={"charts-container"}>
+                        <div className={"caption"}>
+                            <div className={"caption-item"}>
+                                <p className={"caption-label"}>4x</p>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(4)}}/>
+                            </div>
+                            <div className={"caption-item"}>
+                                <p className={"caption-label"}>2x</p>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(2)}}/>
+                            </div>
+                            <div className={"caption-item"}>
+                                <p className={"caption-label"}>1x</p>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(1)}}/>
+                            </div>
+                            <div className={"caption-item"}>
+                                <p className={"caption-label"}>0.5x</p>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(0.5)}}/>
+                            </div>
+                            <div className={"caption-item"}>
+                                <p className={"caption-label"}>0.25x</p>
+                                <div className={"caption-color"} style={{backgroundColor: effectColor(0.25)}}/>
+                            </div>
+                        </div>
+                        {loadingDamages && <p>Loading damages...</p>}
+                        {damages.length === 0 && !loadingDamages && <p>Select a move to see the damages inflicted</p>}
+                        {damages.length !== 0 && !loadingDamages &&
+                            <Chart type="bar" data={barData} options={barOptions}/>
+                        }
+                    </div>
                 </div>
             }
         </>

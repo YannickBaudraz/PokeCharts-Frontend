@@ -2,3 +2,41 @@
     display:none;
 }
 
+.caption {
+    display: flex;
+}
+
+.caption-item {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100px;
+    display: flex;
+}
+
+.caption-color {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: rgb(179, 164, 61);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.caption-label {
+    width: 50px;
+    height: 50px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.charts-container > .p-chart {
+    height: 624px;
+}
