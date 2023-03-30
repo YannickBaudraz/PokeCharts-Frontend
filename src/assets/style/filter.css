@@ -1,0 +1,100 @@
+.filter-container {
+    display: flex;
+    width: 100%;
+    /*background-color: red;*/
+    padding: 20px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.types-container {
+    /*background-color: aqua;*/
+    height: 212px;
+    width: 450px;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+
+.stats-container {
+    /*background-color: chartreuse;*/
+    height: 212px;
+    width: 150px;
+    padding: 0;
+    align-content: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.detail-container {
+    height: 212px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch-container {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switch-container > * {
+    margin: 0 10px;
+}
+
+.pokemon-container {
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.pokemon-container > a {
+    text-decoration: none;
+    color: black;
+}
+
+.chart-container {
+    width: 100%;
+}
+
+.chart-container .p-chart{
+    width: 100%;
+    height: inherit;
+}
+
+.content-container {
+    text-align: center;
+}
+
+.field-checkbox {
+    width: 150px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.field-checkboxes {
+    display: flex;
+    width: 212px;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.field-radiobutton {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}

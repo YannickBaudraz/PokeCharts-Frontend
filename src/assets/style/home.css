@@ -1,0 +1,36 @@
+html::-webkit-scrollbar{
+    display: none;
+}
+html, body {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.background-image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.home-container {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    text-align: center;
+    display: flex;
+    width: 50%;
+    justify-content: space-evenly;
+    transform: translate(-49.5%, 0);
+}
+
+.home-container a {
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.home-container a:hover {
+    transform: scale(1.1);
+}

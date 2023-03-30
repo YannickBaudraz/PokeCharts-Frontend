@@ -1,0 +1,17 @@
+.pokemon-type {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    transition: all .2s;
+    margin: 10px;
+}
+
+.pokemon-type:hover {
+    transform: scale(1.2);
+}
+
+.pokemon-type > img {
+    height: 60%;
+    width: 60%;
+    margin: 20%;
+}
