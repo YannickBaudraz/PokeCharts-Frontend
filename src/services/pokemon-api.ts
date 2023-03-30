@@ -92,4 +92,18 @@ export default class PokemonApi {
                 console.error('Error:', error);
             });
     }
+
+    public async attackPokemon(attacker: number, target: number, moveId: number){
+        const baseUrl = import.meta.env.VITE_BACKEND_URL + 'Pokemons/Attack?';
+        const attackerUrl = 'attackerId=' + attacker.toString();
+        const targetUrl = '&targetId=' + target.toString()
+        const moveUrl = '&moveId=' + moveId.toString();
+        const url = baseUrl + attackerUrl + targetUrl + moveUrl;
+
+        return fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                return data;
+            })
+    }
 }
