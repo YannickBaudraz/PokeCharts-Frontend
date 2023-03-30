@@ -21,12 +21,18 @@ export default function Detail() {
     const [display, setDisplay] = useState(false);
     const [pokemonDetail, setPokemonDetail] = useState<Pokemon>();
 
+    /**
+     * Get pokemon name from url
+     */
     const getPokemonName = () => {
         const pokemonName: any = window.location.pathname.split('/')[2];
         if (pokemonName == undefined) return "Select a Pokemon";
-        if (!isNaN(pokemonName)) return listPokemonNames[pokemonName - 1] || "Select a Pokemon";
+        if (!isNaN(pokemonName)) { // @ts-ignore
+            return listPokemonNames[pokemonName - 1] || "Select a Pokemon";
+        }
 
-        return listPokemonNames.find((pokemon: PokemonDex) => {
+        // @ts-ignore
+        return listPokemonNames?.find((pokemon: PokemonDex) => {
             return pokemonName == pokemon;
         });
     }
@@ -35,6 +41,9 @@ export default function Detail() {
         setPokemon(getPokemonName());
     }
 
+    /**
+     * Get pokemon detail from api
+     */
     useEffect(() => {
         setPokemon(getPokemonName());
         if (getPokemonName() == 'Select a Pokemon' || getPokemonName() == undefined) {
@@ -50,6 +59,9 @@ export default function Detail() {
             });
     }, [getPokemonName()]);
 
+    /**
+     * Get pokemon info
+     */
     const getPokemonInfo = () => {
         const info: Pokemon = {} as Pokemon;
         if (pokemonDetail) {
@@ -65,6 +77,10 @@ export default function Detail() {
     const displayPokemon = pokemonDetail !== undefined ? 'block' : 'none'
 
     let navigate = useNavigate();
+    /**
+     * Navigate to detail page
+     * @param pokemonName
+     */
     const routeChange = (pokemonName: String) => {
         let path = `/detail/${pokemonName}`;
         setDisplay(false)

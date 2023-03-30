@@ -1,8 +1,11 @@
 import { Image } from 'primereact/image';
 import Pokemon from '../../models/Pokemon';
 
-interface ImageProps {
-    pokemon:Pokemon
+/**
+ * props for DisplayImage
+ */
+type ImageProps = {
+    pokemon: Pokemon
 }
 
 export default function DisplayImage({pokemon}:ImageProps) {

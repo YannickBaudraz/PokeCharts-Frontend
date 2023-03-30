@@ -1,7 +1,10 @@
 import Pokemon from '../../models/Pokemon';
 
-interface PokemonStateInfoProps {
-    pokemon:Pokemon
+/**
+ * Props of DisplayStateInfo
+ */
+type PokemonStateInfoProps = {
+    pokemon: Pokemon
 }
 
 export default function DisplayStateInfo({pokemon}:PokemonStateInfoProps) {

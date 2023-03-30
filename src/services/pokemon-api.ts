@@ -70,6 +70,10 @@ export default class PokemonApi {
             });
     }
 
+    /**
+     * This method get all the Pokémon moves by his id
+     * @param pokemonId
+     */
     public async getPokemonMoves(pokemonId: number) {
         return fetch(import.meta.env.VITE_BACKEND_URL + 'PokemonMoves/' + pokemonId)
             .then((response) => response.json())

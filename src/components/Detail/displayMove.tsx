@@ -7,6 +7,9 @@ import PokemonApi from "../../services/pokemon-api";
 export default function DisplayMove({pokemonId}: {pokemonId: number}) {
     const [moves, setMoves] = useState<Move[]>([]);
 
+    /**
+     * Get pokemon moves
+     */
     useEffect(() => {
         const pokemonApi = new PokemonApi();
         pokemonApi.getPokemonMoves(pokemonId).then((data) => {

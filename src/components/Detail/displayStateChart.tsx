@@ -3,7 +3,10 @@ import { Chart } from 'primereact/chart';
 import { useState } from 'react';
 import PokemonStats from '../../models/Stats';
 
-interface PokemonStateChartProps {
+/**
+ * Props of DisplayStateChart
+ */
+type PokemonStateChartProps = {
     pokemonStats: PokemonStats
 }
 
